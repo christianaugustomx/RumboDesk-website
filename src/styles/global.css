@@ -56,3 +56,48 @@ body {
   transition: background 0.15s ease;
 }
 .btn-ghost:hover { background: var(--color-brand-50); }
+
+/* Scroll-triggered reveal (A) */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .55s ease-out, transform .55s ease-out;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover micro-interactions (C) */
+.hover-lift {
+  transition: transform .2s ease-out, box-shadow .2s ease-out, background-color .2s ease-out;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+}
+
+.hover-zoom {
+  transition: transform .35s ease-out, box-shadow .35s ease-out;
+}
+.hover-zoom:hover {
+  transform: scale(1.012);
+}
+
+/* Respect user's accessibility preference */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hover-lift,
+  .hover-zoom {
+    transition: none;
+  }
+  .hover-lift:hover,
+  .hover-zoom:hover {
+    transform: none;
+  }
+}
