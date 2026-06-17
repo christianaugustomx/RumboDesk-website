@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const lang = 'es' as const;
+const title = 'RumboDesk para operadores de turismo — proveedores y paquetes bajo control';
+const description = 'Catálogo de proveedores LATAM, ingest IA de confirmaciones, pasaportes y visas. La herramienta operativa para tour operators.';
+---
+<BaseLayout lang={lang} pageKey="operators" title={title} description={description}>
+  <section class="py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold uppercase">Para operadores</span>
+      <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold text-brand-900">Tus paquetes, tus proveedores, tu control.</h1>
+      <p class="mt-4 text-lg text-gray-700">Hoteles, transporte, guías, restaurantes, vuelos. RumboDesk los reconoce, los unifica y los deja listos para empaquetar — sin duplicados y con auditoría.</p>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-8">
+      <div class="p-6 rounded-2xl bg-paper border border-gray-100">
+        <h3 class="font-bold text-brand-900">Catálogo LATAM precargado</h3>
+        <p class="mt-2 text-gray-700 text-sm">Empieza con un catálogo de proveedores semilla orientado a LATAM. Lo que falte, se agrega y queda para todos.</p>
+      </div>
+      <div class="p-6 rounded-2xl bg-paper border border-gray-100">
+        <h3 class="font-bold text-brand-900">Items por reserva</h3>
+        <p class="mt-2 text-gray-700 text-sm">Hotel + transporte + guía + restaurante + actividad + vuelo. Día por día. Con costo y precio separados.</p>
+      </div>
+      <div class="p-6 rounded-2xl bg-paper border border-gray-100">
+        <h3 class="font-bold text-brand-900">Pasaportes y visas</h3>
+        <p class="mt-2 text-gray-700 text-sm">Escaneo de pasaporte, alertas de vencimiento, tracking de visas por destino.</p>
+      </div>
+      <div class="p-6 rounded-2xl bg-paper border border-gray-100">
+        <h3 class="font-bold text-brand-900">Vuelos con IATA y país</h3>
+        <p class="mt-2 text-gray-700 text-sm">Origen y destino con código IATA y bandera del país. Reservas con contexto, no solo texto.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 text-center">
+    <a href="https://rumbodesk.app" class="btn-primary">Probar para mi operación</a>
+  </section>
+</BaseLayout>

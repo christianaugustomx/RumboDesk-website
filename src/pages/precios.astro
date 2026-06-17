@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const lang = 'es' as const;
+const title = 'Precios — RumboDesk · Planes desde $799 MXN al mes';
+const description = 'Tres planes pensados para operadores y agencias en LATAM. Esencial, Profesional y Empresarial. Precios en pesos mexicanos.';
+
+const plans = [
+  {
+    name: 'Esencial',
+    price: '$799',
+    period: '/mes',
+    audience: 'Operadores y agentes independientes que arrancan',
+    bullets: [
+      'Hasta 30 reservas activas',
+      'Ingest por email + pegado de texto',
+      '1 usuario',
+      'Catálogo de proveedores ilimitado',
+      'Soporte por email',
+    ],
+    cta: 'Empezar Esencial',
+    highlight: false,
+  },
+  {
+    name: 'Profesional',
+    price: '$1,599',
+    period: '/mes',
+    audience: 'Agencias pequeñas y operadores en crecimiento',
+    bullets: [
+      'Hasta 200 reservas activas',
+      'Hasta 5 usuarios',
+      'PDF y Word con OCR',
+      'Visa tracking + pasaportes',
+      'Reportes financieros (MoM, comisiones)',
+      'Soporte prioritario',
+    ],
+    cta: 'Empezar Profesional',
+    highlight: true,
+  },
+  {
+    name: 'Empresarial',
+    price: '$9,999',
+    period: '/mes',
+    audience: 'Agencias medianas/grandes con flujo alto',
+    bullets: [
+      'Reservas ilimitadas',
+      'Usuarios ilimitados',
+      'API + integraciones',
+      'CFDI 4.0 y facturación',
+      'Onboarding asistido',
+      'Soporte dedicado',
+    ],
+    cta: 'Hablar con ventas',
+    highlight: false,
+  },
+];
+---
+<BaseLayout lang={lang} pageKey="pricing" title={title} description={description}>
+  <section class="py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-brand-900">Precios simples, sin sorpresas.</h1>
+      <p class="mt-4 text-lg text-gray-700">Todos los planes incluyen ingest IA, revisión humana, multi-idioma y respaldo de archivos originales.</p>
+      <p class="mt-2 text-sm text-gray-500">Precios en MXN. Impuestos no incluidos. 14 días de prueba sin tarjeta.</p>
+    </div>
+  </section>
+
+  <section class="pb-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-6">
+      {plans.map(p => (
+        <div class={`p-8 rounded-2xl bg-white border ${p.highlight ? 'border-brand-500 ring-2 ring-brand-500/30 shadow-lg' : 'border-gray-200'}`}>
+          {p.highlight && <div class="text-xs font-bold uppercase tracking-wide text-brand-600 mb-2">Más popular</div>}
+          <h3 class="text-2xl font-bold text-brand-900">{p.name}</h3>
+          <p class="mt-1 text-sm text-gray-600">{p.audience}</p>
+          <div class="mt-6 flex items-baseline gap-1">
+            <span class="text-4xl font-extrabold text-brand-900">{p.price}</span>
+            <span class="text-gray-600">{p.period} MXN</span>
+          </div>
+          <ul class="mt-6 space-y-3 text-sm text-gray-700">
+            {p.bullets.map(b => (
+              <li class="flex gap-2"><span class="text-brand-500">✓</span>{b}</li>
+            ))}
+          </ul>
+          <a href="https://rumbodesk.app" class={`mt-8 block text-center ${p.highlight ? 'btn-primary' : 'btn-ghost'}`}>{p.cta}</a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="pb-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-600">
+      <p>¿Necesitas algo diferente? <a href="/contacto" class="text-brand-600 font-semibold hover:underline">Hablemos</a>.</p>
+    </div>
+  </section>
+</BaseLayout>

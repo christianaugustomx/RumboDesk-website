@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const lang = 'en' as const;
+const title = 'Contact — RumboDesk';
+const description = 'Let\'s talk. RumboDesk for travel operators and agencies in LATAM.';
+---
+<BaseLayout lang={lang} pageKey="contact" title={title} description={description}>
+  <section class="py-20">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-brand-900">Let's talk.</h1>
+      <p class="mt-4 text-lg text-gray-700">Reach out for demos, sales questions or support.</p>
+      <div class="mt-8 space-y-4">
+        <a href="mailto:hola@rumbodesk.com" class="block p-5 rounded-xl border border-gray-200 hover:border-brand-300 hover:bg-brand-50 transition">
+          <div class="font-semibold text-brand-900">Email</div>
+          <div class="text-gray-700">hola@rumbodesk.com</div>
+        </a>
+        <a href="https://wa.me/" class="block p-5 rounded-xl border border-gray-200 hover:border-brand-300 hover:bg-brand-50 transition">
+          <div class="font-semibold text-brand-900">WhatsApp</div>
+          <div class="text-gray-700">Coming soon</div>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

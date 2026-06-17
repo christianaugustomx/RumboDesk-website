@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const lang = 'en' as const;
+const title = 'RumboDesk — The portal where your travel bookings organize themselves';
+const description = 'Forward confirmation emails, paste Word itineraries or WhatsApp notes. RumboDesk turns them into structured, auditable bookings — ready to review and confirm.';
+---
+<BaseLayout lang={lang} pageKey="home" title={title} description={description}>
+
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-50 via-paper to-white"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 text-center">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold uppercase tracking-wide">Built in Mexico · For LATAM</span>
+      <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-900 tracking-tight max-w-4xl mx-auto">
+        The portal where your bookings <span class="text-brand-500">organize themselves</span>.
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto">
+        Forward the confirmation email or paste the Word itinerary. RumboDesk structures it, leaves it ready to review, and nothing slips through.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="https://rumbodesk.app" class="btn-primary">Try free</a>
+        <a href="/en/product" class="btn-ghost">See how it works</a>
+      </div>
+      <p class="mt-4 text-sm text-gray-500">No credit card · 14-day trial · Spanish, English & French</p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl font-bold text-brand-900">Still typing bookings by hand?</h2>
+        <p class="mt-4 text-gray-700 leading-relaxed">Every operator and agency we know loses hours a week copying data from hotel confirmations, flight PDFs, and WhatsApp threads into their spreadsheets. And still, something slips: a wrong date, a duplicate supplier, a missed deadline.</p>
+        <p class="mt-4 text-gray-700 leading-relaxed">RumboDesk replaces that manual work. You forward the email or paste the text; our AI structures it, you approve it, and the booking lands with everything: client, supplier, dates, amount, commission, original file as backup.</p>
+      </div>
+      <ul class="space-y-4">
+        <li class="flex gap-3 p-4 rounded-xl bg-paper border border-gray-100"><span class="text-brand-500 font-bold">✓</span><div><b>Zero manual entry.</b> Forward the email, paste the itinerary, upload a PDF.</div></li>
+        <li class="flex gap-3 p-4 rounded-xl bg-paper border border-gray-100"><span class="text-brand-500 font-bold">✓</span><div><b>Human review, always.</b> Nothing hits your bookings without your OK.</div></li>
+        <li class="flex gap-3 p-4 rounded-xl bg-paper border border-gray-100"><span class="text-brand-500 font-bold">✓</span><div><b>One supplier, one record.</b> We catch duplicates before they pollute your catalog.</div></li>
+        <li class="flex gap-3 p-4 rounded-xl bg-paper border border-gray-100"><span class="text-brand-500 font-bold">✓</span><div><b>Deadlines in your face.</b> Payments, deposits, visas — no surprises.</div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl font-bold text-brand-900">Three steps. One spotless booking.</h2>
+        <p class="mt-3 text-gray-700">From email, WhatsApp, PDF, Word, Excel or plain pasted text.</p>
+      </div>
+      <div class="mt-12 grid md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
+          <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-700 font-bold flex items-center justify-center">1</div>
+          <h3 class="mt-4 text-xl font-bold text-brand-900">Ingest</h3>
+          <p class="mt-2 text-gray-700">Forward the email to your RumboDesk inbox, upload the PDF, or paste the text. Attachments included.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
+          <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-700 font-bold flex items-center justify-center">2</div>
+          <h3 class="mt-4 text-xl font-bold text-brand-900">Structure</h3>
+          <p class="mt-2 text-gray-700">Our AI detects client, supplier, dates, costs and assembles the booking. You review in seconds.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
+          <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-700 font-bold flex items-center justify-center">3</div>
+          <h3 class="mt-4 text-xl font-bold text-brand-900">Confirm</h3>
+          <p class="mt-2 text-gray-700">You approve, and it's saved with deadlines, commission, a unique supplier and the original file.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-6">
+      <a href="/en/for-agencies" class="group p-8 rounded-2xl border border-gray-100 bg-paper hover:bg-brand-50 transition">
+        <h3 class="text-2xl font-bold text-brand-900">For agencies</h3>
+        <p class="mt-2 text-gray-700">Multiple agents, dozens of bookings a day, one source of truth. CRM, commissions, deadlines.</p>
+        <span class="mt-4 inline-block text-brand-600 font-semibold group-hover:underline">See more →</span>
+      </a>
+      <a href="/en/for-operators" class="group p-8 rounded-2xl border border-gray-100 bg-paper hover:bg-brand-50 transition">
+        <h3 class="text-2xl font-bold text-brand-900">For operators</h3>
+        <p class="mt-2 text-gray-700">Your suppliers, your packages, your rates. Passports, visas and deadlines under control.</p>
+        <span class="mt-4 inline-block text-brand-600 font-semibold group-hover:underline">See more →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl bg-brand-600 text-white p-10 sm:p-14 text-center">
+        <h2 class="text-3xl sm:text-4xl font-extrabold">Get your first booking ingested in 5 minutes.</h2>
+        <p class="mt-3 text-brand-100">Create your account, forward a confirmation email, watch it structure itself.</p>
+        <a href="https://rumbodesk.app" class="mt-6 inline-flex btn-primary !bg-white !text-brand-700 hover:!bg-brand-50">Try RumboDesk free</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const lang = 'en' as const;
+const title = 'Product — RumboDesk · AI ingest for travel bookings';
+const description = 'Ingest → structure → review → confirm. Emails, PDFs, Word, Excel and WhatsApp turned into auditable bookings.';
+---
+<BaseLayout lang={lang} pageKey="product" title={title} description={description}>
+  <section class="py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-brand-900">A narrow, flawless pipeline.</h1>
+      <p class="mt-4 text-lg text-gray-700">RumboDesk isn't a giant ops suite. It does one thing very well: turning messy information into trustworthy bookings, with a human in the loop.</p>
+    </div>
+  </section>
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div><h2 class="text-2xl font-bold text-brand-900">1. Universal ingest</h2>
+        <p class="mt-2 text-gray-700">Every org gets a private inbox <code class="bg-brand-50 px-2 py-0.5 rounded text-brand-700">yourorg@rumbodesk.app</code>. Forward any email — hotel confirmation, airline PDF, Word itinerary, screenshot — and it lands in your tray with all attachments.</p></div>
+      <div><h2 class="text-2xl font-bold text-brand-900">2. AI structuring</h2>
+        <p class="mt-2 text-gray-700">Claude analyzes text and attachments (including PDFs and converted Word docs), extracts client, supplier, dates, costs, commission, IATA code, country. Every field saves the original excerpt for auditability.</p></div>
+      <div><h2 class="text-2xl font-bold text-brand-900">3. Mandatory human review</h2>
+        <p class="mt-2 text-gray-700">Nothing reaches your bookings without your OK. You see the proposal, tweak what's needed, confirm. AI proposes; you decide.</p></div>
+      <div><h2 class="text-2xl font-bold text-brand-900">4. Single supplier catalog</h2>
+        <p class="mt-2 text-gray-700">Duplicate detection before creation. No three versions of the same hotel polluting your base.</p></div>
+      <div><h2 class="text-2xl font-bold text-brand-900">5. Deadlines and backups</h2>
+        <p class="mt-2 text-gray-700">Deposits, visa expirations, client courtesies. Everything visible, original file always attached.</p></div>
+    </div>
+  </section>
+</BaseLayout>

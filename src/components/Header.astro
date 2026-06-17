@@ -1,0 +1,39 @@
+---
+import { t, routes, type Lang } from '../i18n/ui';
+import { alternatePaths, type PageKey } from '../i18n/utils';
+
+interface Props { lang: Lang; pageKey: PageKey; }
+const { lang, pageKey } = Astro.props;
+const r = routes[lang];
+const otherLang: Lang = lang === 'es' ? 'en' : 'es';
+const otherPath = alternatePaths[pageKey][otherLang];
+---
+
+<header class="border-b border-gray-200 bg-white/80 backdrop-blur sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <a href={r.home} class="flex items-center gap-2 font-bold text-brand-700 text-lg">
+      <img src="/favicon.svg" alt="RumboDesk" class="w-8 h-8" />
+      RumboDesk
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
+      <a href={r.product} class="hover:text-brand-600">{t(lang, 'nav.product')}</a>
+      <a href={r.pricing} class="hover:text-brand-600">{t(lang, 'nav.pricing')}</a>
+      <a href={r.agencies} class="hover:text-brand-600">{t(lang, 'nav.agencies')}</a>
+      <a href={r.operators} class="hover:text-brand-600">{t(lang, 'nav.operators')}</a>
+      <a href={r.blog} class="hover:text-brand-600">{t(lang, 'nav.blog')}</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href={otherPath} class="text-sm font-medium text-gray-600 hover:text-brand-600" aria-label="Switch language">
+        {otherLang.toUpperCase()}
+      </a>
+      <a href="https://rumbodesk.app" class="hidden sm:inline text-sm font-medium text-gray-700 hover:text-brand-600">
+        {t(lang, 'nav.login')}
+      </a>
+      <a href="https://rumbodesk.app" class="btn-primary text-sm">
+        {t(lang, 'nav.cta')}
+      </a>
+    </div>
+  </div>
+</header>

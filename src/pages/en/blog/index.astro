@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+const lang = 'en' as const;
+const title = 'Blog — RumboDesk · Ops, AI and LATAM travel';
+const description = 'Ideas, real cases and practical guides for travel operators and agencies in LATAM.';
+---
+<BaseLayout lang={lang} pageKey="blog" title={title} description={description}>
+  <section class="py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-brand-900">Blog</h1>
+      <p class="mt-4 text-lg text-gray-700">Coming soon: guides, use cases and templates for LATAM operators and agencies.</p>
+      <p class="mt-2 text-sm text-gray-500">Got a topic in mind? <a href="/en/contact" class="text-brand-600 font-semibold">Write us</a>.</p>
+    </div>
+  </section>
+</BaseLayout>

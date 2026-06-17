@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const lang = 'es' as const;
+const title = 'Producto — RumboDesk · Ingest IA para reservas de viaje';
+const description = 'Pipeline ingest → estructura → revisión → confirmación. Email, PDF, Word, Excel y WhatsApp convertidos en reservas auditables.';
+---
+<BaseLayout lang={lang} pageKey="product" title={title} description={description}>
+  <section class="py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-brand-900">Un pipeline angosto e impecable.</h1>
+      <p class="mt-4 text-lg text-gray-700">RumboDesk no es una suite gigante de operaciones. Hace una cosa muy bien: convertir información desordenada en reservas confiables, con humano en el medio.</p>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div>
+        <h2 class="text-2xl font-bold text-brand-900">1. Ingest universal</h2>
+        <p class="mt-2 text-gray-700">Cada organización recibe un buzón privado <code class="bg-brand-50 px-2 py-0.5 rounded text-brand-700">tuorg@rumbodesk.app</code>. Reenvías cualquier email — confirmación de hotel, PDF de Aeroméxico, itinerario en Word, screenshot — y todo cae en tu bandeja con sus adjuntos.</p>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold text-brand-900">2. Estructura con IA</h2>
+        <p class="mt-2 text-gray-700">Claude analiza el texto y los adjuntos (incluso PDFs y Word convertidos), extrae cliente, proveedor, fechas, costos, comisión, código IATA, país. Cada dato guarda el fragmento original de dónde salió, para que tú puedas auditar.</p>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold text-brand-900">3. Revisión humana obligatoria</h2>
+        <p class="mt-2 text-gray-700">Nada llega a tus reservas sin tu OK. Ves la propuesta, ajustas lo que haga falta, confirmas. La IA propone; tú decides.</p>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold text-brand-900">4. Catálogo de proveedores único</h2>
+        <p class="mt-2 text-gray-700">Detección de duplicados antes de crear. Nada de tres versiones del mismo hotel ensuciando tu base.</p>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold text-brand-900">5. Deadlines y respaldos</h2>
+        <p class="mt-2 text-gray-700">Pagos de depósito, vencimientos de visa, cortesías a clientes. Todo a la vista, con el archivo original siempre adjunto.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

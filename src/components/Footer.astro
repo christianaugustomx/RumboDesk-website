@@ -1,0 +1,47 @@
+---
+import { t, routes, type Lang } from '../i18n/ui';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const r = routes[lang];
+---
+
+<footer class="border-t border-gray-200 bg-white mt-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid gap-10 md:grid-cols-4">
+    <div class="md:col-span-2">
+      <div class="flex items-center gap-2 font-bold text-brand-700 text-lg">
+        <img src="/favicon.svg" alt="RumboDesk" class="w-8 h-8" />
+        RumboDesk
+      </div>
+      <p class="mt-3 text-sm text-gray-600 max-w-sm">{t(lang, 'footer.tagline')}</p>
+    </div>
+
+    <div>
+      <h4 class="font-semibold text-sm text-gray-900">{t(lang, 'footer.product')}</h4>
+      <ul class="mt-3 space-y-2 text-sm text-gray-600">
+        <li><a href={r.product} class="hover:text-brand-600">{t(lang, 'nav.product')}</a></li>
+        <li><a href={r.pricing} class="hover:text-brand-600">{t(lang, 'nav.pricing')}</a></li>
+        <li><a href={r.agencies} class="hover:text-brand-600">{t(lang, 'nav.agencies')}</a></li>
+        <li><a href={r.operators} class="hover:text-brand-600">{t(lang, 'nav.operators')}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-semibold text-sm text-gray-900">{t(lang, 'footer.company')}</h4>
+      <ul class="mt-3 space-y-2 text-sm text-gray-600">
+        <li><a href={r.blog} class="hover:text-brand-600">{t(lang, 'nav.blog')}</a></li>
+        <li><a href={r.contact} class="hover:text-brand-600">{t(lang, 'nav.contact')}</a></li>
+        <li><a href="https://rumbodesk.app" class="hover:text-brand-600">{t(lang, 'nav.login')}</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-xs text-gray-500 flex flex-wrap items-center justify-between gap-3">
+      <span>{t(lang, 'footer.copy')}</span>
+      <span class="flex gap-4">
+        <a href={lang === 'es' ? '/privacidad' : '/en/privacy'} class="hover:text-brand-600">{t(lang, 'footer.privacy')}</a>
+        <a href={lang === 'es' ? '/terminos' : '/en/terms'} class="hover:text-brand-600">{t(lang, 'footer.terms')}</a>
+      </span>
+    </div>
+  </div>
+</footer>
