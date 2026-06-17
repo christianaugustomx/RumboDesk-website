@@ -15,6 +15,8 @@ export const alternatePaths: Record<string, { es: string; en: string }> = {
   operators:{ es: '/para-operadores', en: '/en/for-operators' },
   blog:     { es: '/blog',            en: '/en/blog' },
   contact:  { es: '/contacto',        en: '/en/contact' },
+  privacy:  { es: '/privacidad',      en: '/en/privacy' },
+  terms:    { es: '/terminos',        en: '/en/terms' },
 };
 
 export type PageKey = keyof typeof alternatePaths;

@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const lang = 'en' as const;
+const title = 'Terms of Service — RumboDesk';
+const description = 'RumboDesk Terms of Service for travel operators and agencies across LATAM.';
+---
+<BaseLayout lang={lang} pageKey="terms" title={title} description={description}>
+  <article class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl font-extrabold text-brand-900">Terms of Service</h1>
+      <p class="text-sm text-gray-500 mt-2">Last updated: June 16, 2026</p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">1. Acceptance</h2>
+      <p class="mt-3 text-gray-700">
+        These Terms of Service ("Terms") govern access to and use of RumboDesk (the "Service"), operated by <strong>RumboTech Labs S.A.S. de C.V.</strong> ("RumboDesk", "we", "us"), with tax domicile in the state of Puebla, Mexico. By creating an account or using the Service, you accept these Terms in their entirety. If you do not agree, do not use the Service.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">2. Description of the Service</h2>
+      <p class="mt-3 text-gray-700">
+        RumboDesk is a SaaS platform for travel operators and agencies that allows you to ingest booking information (emails, PDFs, Word, Excel, pasted text, etc.), structure it via artificial intelligence, and manage it with human review before confirmation. The Service also includes auxiliary tools such as supplier catalog, client management, deadlines and operational reporting.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">3. Account and eligibility</h2>
+      <p class="mt-3 text-gray-700">
+        You must be of legal age and have legal capacity to enter into contracts. You are responsible for keeping your credentials confidential and for all activity that occurs under your account. Notify us immediately of any unauthorized use.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">4. Plans, pricing and payments</h2>
+      <p class="mt-3 text-gray-700">
+        The Service is offered under monthly or annual subscription plans. Current prices are published at <a href="/en/pricing" class="text-brand-600">/en/pricing</a>. Payments are processed by Stripe; by subscribing you also accept Stripe's terms. Subscriptions auto-renew at the end of each period unless you cancel in advance.
+      </p>
+      <p class="mt-3 text-gray-700">
+        We offer a no-credit-card trial period. If you do not subscribe to a paid plan at the end of the trial, your account moves to a limited mode or is suspended.
+      </p>
+      <p class="mt-3 text-gray-700">
+        <strong>Refunds:</strong> payments are non-refundable except where required by applicable law or as otherwise agreed in writing.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">5. Acceptable use</h2>
+      <p class="mt-3 text-gray-700">You agree not to:</p>
+      <ul class="mt-3 text-gray-700 list-disc pl-6 space-y-2">
+        <li>Use the Service for illegal purposes or to infringe third-party rights.</li>
+        <li>Upload content that infringes intellectual property, contains malware or promotes illegal activities.</li>
+        <li>Attempt to access other accounts, breach security, or reverse-engineer the Service.</li>
+        <li>Resell, sublicense or redistribute the Service without our written consent.</li>
+        <li>Overload our infrastructure via mass scraping or excessive automated queries.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">6. User content</h2>
+      <p class="mt-3 text-gray-700">
+        You retain ownership of all information you upload or input into RumboDesk ("User Content"). You grant us a limited, worldwide, non-exclusive license to store, process and display such Content solely to provide the Service.
+      </p>
+      <p class="mt-3 text-gray-700">
+        You are responsible for having the right to process the personal data of third parties (end-clients, suppliers) you input, and for complying with applicable privacy law when sharing it with us.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">7. Artificial intelligence</h2>
+      <p class="mt-3 text-gray-700">
+        The Service uses third-party AI models (Anthropic) to structure the content you forward. The AI proposes results; <strong>you review and confirm</strong> before any information becomes a booking. We do not guarantee absolute accuracy of AI-generated results; you are responsible for verifying everything before acting on it.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">8. Intellectual property</h2>
+      <p class="mt-3 text-gray-700">
+        RumboDesk, its brand, logo, software and design are property of RumboTech Labs S.A.S. de C.V. or its licensors. These Terms do not grant you any rights over the Service's intellectual property other than the limited right of use described.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">9. Availability and changes</h2>
+      <p class="mt-3 text-gray-700">
+        We strive to keep the Service available 24/7, but we do not guarantee uninterrupted availability. We may perform scheduled maintenance, updates or modifications to the Service. We will endeavor to notify material changes with reasonable advance notice.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">10. Suspension and termination</h2>
+      <p class="mt-3 text-gray-700">
+        We may suspend or terminate your account if you breach these Terms, fail to pay your subscription, or if your use endangers the Service or other users. You may cancel your account at any time from the portal or by emailing <a href="mailto:hola@rumbodesk.com" class="text-brand-600">hola@rumbodesk.com</a>.
+      </p>
+      <p class="mt-3 text-gray-700">
+        Upon termination, you may request an export of your data within thirty calendar days. After that period, we will delete your data as described in our <a href="/en/privacy" class="text-brand-600">Privacy Notice</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">11. Limitation of liability</h2>
+      <p class="mt-3 text-gray-700">
+        To the maximum extent permitted by law, RumboDesk shall not be liable for indirect, incidental, consequential or lost-profit damages arising from the use or inability to use the Service. Our aggregate liability for any claim shall not exceed the amount you paid for the Service in the twelve months preceding the event giving rise to the claim.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">12. Indemnification</h2>
+      <p class="mt-3 text-gray-700">
+        You agree to indemnify RumboDesk against third-party claims arising from: (i) your use of the Service in violation of these Terms, (ii) User Content you upload, or (iii) violation of third-party rights.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">13. Governing law and jurisdiction</h2>
+      <p class="mt-3 text-gray-700">
+        These Terms are governed by the federal laws of the United Mexican States. For any controversy arising from them, the parties expressly submit to the jurisdiction of the competent courts of the city and state of <strong>Puebla, Mexico</strong>, waiving any other jurisdiction they may have.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">14. Changes to these Terms</h2>
+      <p class="mt-3 text-gray-700">
+        We may update these Terms. We will notify material changes by email or via a prominent in-Service notice. If you continue using the Service after the changes take effect, you accept them.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">15. Contact</h2>
+      <p class="mt-3 text-gray-700">
+        For any questions about these Terms, write to <a href="mailto:hola@rumbodesk.com" class="text-brand-600">hola@rumbodesk.com</a>.
+      </p>
+    </div>
+  </article>
+</BaseLayout>

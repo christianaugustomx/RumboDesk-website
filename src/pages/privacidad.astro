@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const lang = 'es' as const;
+const title = 'Aviso de Privacidad — RumboDesk';
+const description = 'Aviso de Privacidad Integral de RumboDesk conforme a la LFPDPPP. Cómo recopilamos, usamos y protegemos tus datos personales.';
+---
+<BaseLayout lang={lang} pageKey="privacy" title={title} description={description}>
+  <article class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl font-extrabold text-brand-900">Aviso de Privacidad</h1>
+      <p class="text-sm text-gray-500 mt-2">Última actualización: 16 de junio de 2026</p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">1. Identidad y domicilio del Responsable</h2>
+      <p class="mt-3 text-gray-700">
+        <strong>RumboTech Labs S.A.S. de C.V.</strong> (en adelante, "RumboDesk", "nosotros" o "el Responsable"), con domicilio fiscal en el estado de Puebla, México, es responsable del tratamiento de tus datos personales conforme a la <em>Ley Federal de Protección de Datos Personales en Posesión de los Particulares</em> (LFPDPPP), su Reglamento y demás normativa aplicable.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">2. Datos personales que recabamos</h2>
+      <p class="mt-3 text-gray-700">Dependiendo del servicio que uses, recabamos:</p>
+      <ul class="mt-3 text-gray-700 list-disc pl-6 space-y-2">
+        <li><strong>Datos de identificación y contacto:</strong> nombre, correo electrónico, número telefónico, organización a la que perteneces.</li>
+        <li><strong>Datos de facturación:</strong> razón social, RFC, dirección fiscal y datos de pago procesados a través de Stripe (no almacenamos directamente datos de tarjetas).</li>
+        <li><strong>Datos operativos:</strong> contenido de correos, archivos PDF, Word, Excel u otros documentos que tú decidas reenviar, subir o pegar en la plataforma con el propósito de estructurarlos como reservas de viaje. Esto puede incluir información de terceros (clientes finales, proveedores) que tú mismo nos proporcionas.</li>
+        <li><strong>Datos técnicos y de uso:</strong> dirección IP, tipo de dispositivo, navegador, fechas y horas de acceso, registros de actividad dentro de la plataforma.</li>
+      </ul>
+      <p class="mt-3 text-gray-700">
+        <strong>Datos personales sensibles:</strong> no solicitamos ni tratamos datos sensibles. Si tú decides incluir información sensible (por ejemplo, datos de salud, religión u origen étnico) dentro de los documentos que cargas, lo haces bajo tu responsabilidad y previo consentimiento de tus clientes.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">3. Finalidades del tratamiento</h2>
+      <p class="mt-3 text-gray-700"><strong>Finalidades primarias</strong> (necesarias para prestar el servicio):</p>
+      <ul class="mt-3 text-gray-700 list-disc pl-6 space-y-2">
+        <li>Crear y administrar tu cuenta y la de tu organización.</li>
+        <li>Procesar la información que reenvías para estructurarla como reservas mediante inteligencia artificial y dejarla disponible para tu revisión.</li>
+        <li>Gestionar pagos, suscripciones y facturación.</li>
+        <li>Ofrecer soporte técnico y atención al cliente.</li>
+        <li>Cumplir con obligaciones legales, fiscales y regulatorias.</li>
+      </ul>
+      <p class="mt-3 text-gray-700"><strong>Finalidades secundarias</strong> (no necesarias, requieren tu consentimiento explícito):</p>
+      <ul class="mt-3 text-gray-700 list-disc pl-6 space-y-2">
+        <li>Envío de comunicaciones comerciales, novedades del producto y materiales educativos.</li>
+        <li>Mejora del servicio mediante análisis estadísticos agregados y anonimizados.</li>
+      </ul>
+      <p class="mt-3 text-gray-700">
+        Puedes oponerte en cualquier momento a las finalidades secundarias enviando un correo a <a href="mailto:hola@rumbodesk.com" class="text-brand-600">hola@rumbodesk.com</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">4. Transferencias de datos</h2>
+      <p class="mt-3 text-gray-700">
+        Para prestar el servicio, transferimos datos a los siguientes proveedores con los que tenemos acuerdos de procesamiento de datos vigentes:
+      </p>
+      <ul class="mt-3 text-gray-700 list-disc pl-6 space-y-2">
+        <li><strong>Supabase Inc. (EE.UU.):</strong> almacenamiento de base de datos y autenticación.</li>
+        <li><strong>Anthropic PBC (EE.UU.):</strong> procesamiento por inteligencia artificial del contenido que reenvías, exclusivamente con fines de estructuración. Anthropic no usa estos datos para entrenar sus modelos.</li>
+        <li><strong>Cloudflare Inc. (EE.UU.):</strong> infraestructura de red, hospedaje y entrega del email-bridge.</li>
+        <li><strong>Stripe Inc. (EE.UU.):</strong> procesamiento de pagos.</li>
+        <li><strong>Google LLC (EE.UU.):</strong> autenticación opcional vía Google Sign-In.</li>
+      </ul>
+      <p class="mt-3 text-gray-700">
+        Estas transferencias internacionales se realizan bajo las salvaguardas exigidas por la LFPDPPP. No vendemos ni compartimos tus datos personales con terceros con fines comerciales.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">5. Derechos ARCO</h2>
+      <p class="mt-3 text-gray-700">
+        Tienes derecho a conocer qué datos personales tenemos de ti, para qué los usamos y las condiciones de su uso (Acceso). Asimismo, puedes solicitar la corrección de información inexacta (Rectificación), pedir que la eliminemos cuando consideres que no se requiere para algún fin previsto (Cancelación), u oponerte al uso de tus datos personales para fines específicos (Oposición).
+      </p>
+      <p class="mt-3 text-gray-700">
+        Para ejercer cualquiera de estos derechos, envía tu solicitud a <a href="mailto:hola@rumbodesk.com" class="text-brand-600">hola@rumbodesk.com</a> incluyendo: (i) nombre completo y datos de contacto, (ii) documentos que acrediten tu identidad, (iii) descripción clara del derecho que deseas ejercer, y (iv) cualquier otro elemento que facilite la atención. Daremos respuesta en un plazo máximo de veinte días hábiles.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">6. Revocación del consentimiento</h2>
+      <p class="mt-3 text-gray-700">
+        Puedes revocar tu consentimiento al tratamiento de tus datos personales en cualquier momento. Sin embargo, la revocación puede impedir que continuemos prestándote el servicio. Para revocarlo, escribe a <a href="mailto:hola@rumbodesk.com" class="text-brand-600">hola@rumbodesk.com</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">7. Conservación de datos</h2>
+      <p class="mt-3 text-gray-700">
+        Conservamos tus datos mientras tu cuenta esté activa y durante los plazos que exija la normativa fiscal, contable y mercantil aplicable (típicamente cinco años después del cierre de cuenta). Posteriormente, los datos se eliminan o anonimizan de forma segura.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">8. Medidas de seguridad</h2>
+      <p class="mt-3 text-gray-700">
+        Implementamos medidas físicas, técnicas y administrativas razonables para proteger tus datos contra accesos no autorizados, pérdida, alteración o divulgación: cifrado en tránsito (TLS) y en reposo, control de acceso por roles, aislamiento por organización (multi-tenant), y monitoreo de actividad.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">9. Uso de cookies</h2>
+      <p class="mt-3 text-gray-700">
+        Este sitio web utiliza únicamente cookies esenciales para el funcionamiento de la sesión y, opcionalmente, analítica agregada sin identificadores personales. No utilizamos cookies de seguimiento publicitario de terceros.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">10. Cambios al Aviso</h2>
+      <p class="mt-3 text-gray-700">
+        Podemos actualizar este Aviso de Privacidad. Cuando hagamos cambios materiales, te notificaremos por correo electrónico y/o mediante un aviso destacado dentro de la plataforma antes de que entren en vigor.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">11. Contacto</h2>
+      <p class="mt-3 text-gray-700">
+        Para cualquier duda relacionada con este Aviso o el tratamiento de tus datos personales, contáctanos en <a href="mailto:hola@rumbodesk.com" class="text-brand-600">hola@rumbodesk.com</a>.
+      </p>
+    </div>
+  </article>
+</BaseLayout>

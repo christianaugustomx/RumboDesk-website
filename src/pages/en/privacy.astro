@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const lang = 'en' as const;
+const title = 'Privacy Notice — RumboDesk';
+const description = 'RumboDesk Privacy Notice. How we collect, use and protect your personal data under Mexican LFPDPPP.';
+---
+<BaseLayout lang={lang} pageKey="privacy" title={title} description={description}>
+  <article class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl font-extrabold text-brand-900">Privacy Notice</h1>
+      <p class="text-sm text-gray-500 mt-2">Last updated: June 16, 2026</p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">1. Data Controller</h2>
+      <p class="mt-3 text-gray-700">
+        <strong>RumboTech Labs S.A.S. de C.V.</strong> ("RumboDesk", "we", "us"), with tax domicile in the state of Puebla, Mexico, is the controller of your personal data under Mexico's <em>Federal Law on Protection of Personal Data Held by Private Parties</em> (LFPDPPP), its Regulations, and other applicable rules.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">2. Personal data we collect</h2>
+      <p class="mt-3 text-gray-700">Depending on which service you use, we collect:</p>
+      <ul class="mt-3 text-gray-700 list-disc pl-6 space-y-2">
+        <li><strong>Identification and contact data:</strong> name, email address, phone number, organization.</li>
+        <li><strong>Billing data:</strong> business name, tax ID (RFC), fiscal address, payment data processed via Stripe (we do not store card numbers directly).</li>
+        <li><strong>Operational data:</strong> contents of emails, PDFs, Word, Excel or other documents you forward, upload or paste into the platform to be structured as travel bookings. This may include third-party data (end-clients, suppliers) that you provide.</li>
+        <li><strong>Technical and usage data:</strong> IP address, device type, browser, timestamps of access, activity logs within the platform.</li>
+      </ul>
+      <p class="mt-3 text-gray-700">
+        <strong>Sensitive data:</strong> we do not request or process sensitive personal data. If you choose to include sensitive data (e.g., health, religion, ethnic origin) inside the documents you upload, you do so under your own responsibility and with prior consent from the end-clients.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">3. Purposes of processing</h2>
+      <p class="mt-3 text-gray-700"><strong>Primary purposes</strong> (necessary to deliver the service):</p>
+      <ul class="mt-3 text-gray-700 list-disc pl-6 space-y-2">
+        <li>Create and administer your account and your organization's.</li>
+        <li>Process the information you forward to structure it as bookings via AI and make it available for your review.</li>
+        <li>Process payments, subscriptions and billing.</li>
+        <li>Provide technical support and customer service.</li>
+        <li>Comply with legal, tax and regulatory obligations.</li>
+      </ul>
+      <p class="mt-3 text-gray-700"><strong>Secondary purposes</strong> (not required, subject to your explicit consent):</p>
+      <ul class="mt-3 text-gray-700 list-disc pl-6 space-y-2">
+        <li>Sending commercial communications, product updates and educational materials.</li>
+        <li>Service improvement through aggregated, anonymized statistical analysis.</li>
+      </ul>
+      <p class="mt-3 text-gray-700">
+        You may opt out of secondary purposes at any time by emailing <a href="mailto:hola@rumbodesk.com" class="text-brand-600">hola@rumbodesk.com</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">4. Data transfers</h2>
+      <p class="mt-3 text-gray-700">
+        To provide the service, we transfer data to the following processors, with whom we have active data-processing agreements:
+      </p>
+      <ul class="mt-3 text-gray-700 list-disc pl-6 space-y-2">
+        <li><strong>Supabase Inc. (USA):</strong> database storage and authentication.</li>
+        <li><strong>Anthropic PBC (USA):</strong> AI processing of the content you forward, exclusively for structuring purposes. Anthropic does not use your data to train its models.</li>
+        <li><strong>Cloudflare Inc. (USA):</strong> network infrastructure, hosting and email-bridge delivery.</li>
+        <li><strong>Stripe Inc. (USA):</strong> payment processing.</li>
+        <li><strong>Google LLC (USA):</strong> optional authentication via Google Sign-In.</li>
+      </ul>
+      <p class="mt-3 text-gray-700">
+        These international transfers are made under the safeguards required by LFPDPPP. We do not sell or share your personal data with third parties for commercial purposes.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">5. Your rights (ARCO)</h2>
+      <p class="mt-3 text-gray-700">
+        You have the right to know what personal data we hold about you and how we use it (Access), to request correction of inaccurate data (Rectification), to ask us to delete data when you believe it is no longer required (Cancellation), or to object to the use of your data for specific purposes (Opposition).
+      </p>
+      <p class="mt-3 text-gray-700">
+        To exercise any of these rights, send your request to <a href="mailto:hola@rumbodesk.com" class="text-brand-600">hola@rumbodesk.com</a> including: (i) full name and contact information, (ii) documents proving your identity, (iii) clear description of the right you wish to exercise, and (iv) any other element that helps us respond. We will respond within twenty business days.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">6. Withdrawal of consent</h2>
+      <p class="mt-3 text-gray-700">
+        You may withdraw your consent to the processing of your personal data at any time. Note that withdrawal may prevent us from continuing to provide the service. To withdraw, write to <a href="mailto:hola@rumbodesk.com" class="text-brand-600">hola@rumbodesk.com</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">7. Data retention</h2>
+      <p class="mt-3 text-gray-700">
+        We retain your data while your account is active and during the periods required by applicable tax, accounting and commercial law (typically five years after account closure). After that, data is securely deleted or anonymized.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">8. Security measures</h2>
+      <p class="mt-3 text-gray-700">
+        We implement reasonable physical, technical and administrative measures to protect your data against unauthorized access, loss, alteration or disclosure: encryption in transit (TLS) and at rest, role-based access control, per-organization isolation (multi-tenant), and activity monitoring.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">9. Cookies</h2>
+      <p class="mt-3 text-gray-700">
+        This site uses only essential cookies for session functionality and optional aggregated analytics without personal identifiers. We do not use third-party advertising tracking cookies.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">10. Changes to this Notice</h2>
+      <p class="mt-3 text-gray-700">
+        We may update this Privacy Notice. When we make material changes, we will notify you by email and/or via a prominent in-app notice before they take effect.
+      </p>
+
+      <h2 class="text-2xl font-bold text-brand-900 mt-10">11. Contact</h2>
+      <p class="mt-3 text-gray-700">
+        For any questions about this Notice or the processing of your personal data, contact us at <a href="mailto:hola@rumbodesk.com" class="text-brand-600">hola@rumbodesk.com</a>.
+      </p>
+    </div>
+  </article>
+</BaseLayout>
