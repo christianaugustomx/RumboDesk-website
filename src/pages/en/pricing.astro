@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 const lang = 'en' as const;
 const title = 'Pricing — RumboDesk · Plans from $799 MXN/month';
-const description = 'Three plans for operators and agencies in LATAM. Essential, Professional and Enterprise. Pricing in Mexican pesos.';
+const description = 'Two simple plans for operators and agencies in LATAM. Essential and Professional. Pricing in Mexican pesos.';
 
 const plans = [
   { name: 'Essential', price: '$799', period: '/mo', audience: 'Independent operators and agents getting started',
@@ -11,9 +11,6 @@ const plans = [
   { name: 'Professional', price: '$1,599', period: '/mo', audience: 'Small agencies and growing operators',
     bullets: ['Up to 200 active bookings','Up to 5 users','PDF & Word with OCR','Visa & passport tracking','Financial reports (MoM, commissions)','Priority support'],
     cta: 'Start Professional', highlight: true },
-  { name: 'Enterprise', price: '$9,999', period: '/mo', audience: 'Mid/large agencies with high volume',
-    bullets: ['Unlimited bookings','Unlimited users','API + integrations','CFDI 4.0 invoicing','Assisted onboarding','Dedicated support'],
-    cta: 'Talk to sales', highlight: false },
 ];
 ---
 <BaseLayout lang={lang} pageKey="pricing" title={title} description={description}>
@@ -25,7 +22,7 @@ const plans = [
     </div>
   </section>
   <section class="pb-20">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-6">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-6">
       {plans.map(p => (
         <div class={`p-8 rounded-2xl bg-white border ${p.highlight ? 'border-brand-500 ring-2 ring-brand-500/30 shadow-lg' : 'border-gray-200'}`}>
           {p.highlight && <div class="text-xs font-bold uppercase tracking-wide text-brand-600 mb-2">Most popular</div>}
@@ -43,7 +40,13 @@ const plans = [
       ))}
     </div>
   </section>
-  <section class="pb-20 text-center text-sm text-gray-600">
-    <p>Need something different? <a href="/en/contact" class="text-brand-600 font-semibold hover:underline">Let's talk</a>.</p>
+  <section class="pb-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-2xl border border-gray-200 bg-paper p-8 text-center">
+        <h3 class="text-xl font-bold text-brand-900">Large agency or specific needs?</h3>
+        <p class="mt-2 text-gray-700">If you need more users, custom integrations, or a different agreement, we'll build it with you.</p>
+        <a href="/en/contact" class="mt-5 inline-flex btn-ghost">Talk to us</a>
+      </div>
+    </div>
   </section>
 </BaseLayout>
