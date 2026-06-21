@@ -26,7 +26,7 @@ const orgSchema = {
   '@type': 'Organization',
   name: 'RumboDesk',
   url: 'https://rumbodesk.com',
-  logo: 'https://rumbodesk.com/logo.webp',
+  logo: 'https://rumbodesk.com/logo-mark.webp',
   sameAs: ['https://rumbodesk.app'],
   description: lang === 'es'
     ? 'Portal SaaS para operadores y agencias de viaje en LATAM.'
@@ -40,8 +40,10 @@ const orgSchema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/webp" href="/logo.webp" />
-    <link rel="apple-touch-icon" href="/logo.webp" />
+    <meta name="theme-color" content="#0E1F3A" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -67,6 +69,8 @@ const orgSchema = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,700&display=swap" rel="stylesheet" />
 
     <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
   </head>

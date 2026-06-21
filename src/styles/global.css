@@ -1,22 +1,35 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-50: #e8f5f1;
-  --color-brand-100: #c5e6dc;
-  --color-brand-200: #8ecdba;
-  --color-brand-300: #57b497;
-  --color-brand-400: #2f9b7e;
-  --color-brand-500: #0E7C66;
-  --color-brand-600: #0b6353;
-  --color-brand-700: #084a3e;
-  --color-brand-800: #053229;
-  --color-brand-900: #021915;
+  /* Brand = NAVY (estructura: títulos, texto, chrome) */
+  --color-brand-50: #eef2f8;
+  --color-brand-100: #d8e1ef;
+  --color-brand-200: #b3c4e0;
+  --color-brand-300: #859ecb;
+  --color-brand-400: #4f6da6;
+  --color-brand-500: #1E3A6B;
+  --color-brand-600: #163057;
+  --color-brand-700: #0E1F3A;
+  --color-brand-800: #0a1830;
+  --color-brand-900: #060f1e;
 
-  --color-ink: #0a1f1a;
-  --color-paper: #fafaf7;
+  /* Accent = COBRE (CTAs, botones, "pop") */
+  --color-accent-50: #fbf2ec;
+  --color-accent-100: #f3ddca;
+  --color-accent-200: #e9c2a3;
+  --color-accent-300: #dca176;
+  --color-accent-400: #d28a59;
+  --color-accent-500: #C97B4A;
+  --color-accent-600: #b1663a;
+  --color-accent-700: #8e5230;
+  --color-accent-800: #6d4026;
+  --color-accent-900: #4f2f1d;
+
+  --color-ink: #1A1D24;
+  --color-paper: #FAF8F5;
 
   --font-sans: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'General Sans', 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 html {
@@ -31,18 +44,23 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0.75rem 1.5rem;
-  background: var(--color-brand-500);
+  background: var(--color-accent-500);
   color: white;
   font-weight: 600;
   border-radius: 0.625rem;
   transition: background 0.15s ease;
 }
-.btn-primary:hover { background: var(--color-brand-600); }
+.btn-primary:hover { background: var(--color-accent-600); }
 
 .btn-ghost {
   display: inline-flex;
@@ -52,7 +70,7 @@ body {
   color: var(--color-brand-700);
   font-weight: 600;
   border-radius: 0.625rem;
-  border: 1px solid var(--color-brand-200);
+  border: 1px solid var(--color-brand-300);
   transition: background 0.15s ease;
 }
 .btn-ghost:hover { background: var(--color-brand-50); }

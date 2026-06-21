@@ -30,6 +30,7 @@ export const routes = {
 export const ui = {
   es: {
     'meta.locale': 'es_MX',
+    'brand.lema': 'Pon tu negocio en rumbo.',
     'nav.product': 'Producto',
     'nav.pricing': 'Precios',
     'nav.agencies': 'Agencias',
@@ -48,6 +49,7 @@ export const ui = {
   },
   en: {
     'meta.locale': 'en_US',
+    'brand.lema': 'Put your business on course.',
     'nav.product': 'Product',
     'nav.pricing': 'Pricing',
     'nav.agencies': 'Agencies',

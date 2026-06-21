@@ -50,7 +50,7 @@ const plans = [
   <section class="pb-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-6">
       {plans.map(p => (
-        <div class={`p-8 rounded-2xl bg-white border ${p.highlight ? 'border-brand-500 ring-2 ring-brand-500/30 shadow-lg' : 'border-gray-200'}`}>
+        <div class={`p-8 rounded-2xl bg-white border ${p.highlight ? 'border-accent-500 ring-2 ring-accent-500/30 shadow-lg' : 'border-gray-200'}`}>
           {p.highlight && <div class="text-xs font-bold uppercase tracking-wide text-brand-600 mb-2">Más popular</div>}
           <h3 class="text-2xl font-bold text-brand-900">{p.name}</h3>
           <p class="mt-1 text-sm text-gray-600">{p.audience}</p>
@@ -60,7 +60,7 @@ const plans = [
           </div>
           <ul class="mt-6 space-y-3 text-sm text-gray-700">
             {p.bullets.map(b => (
-              <li class="flex gap-2"><span class="text-brand-500">✓</span>{b}</li>
+              <li class="flex gap-2"><span class="text-accent-500">✓</span>{b}</li>
             ))}
           </ul>
           <a href="https://rumbodesk.app" class={`mt-8 block text-center ${p.highlight ? 'btn-primary' : 'btn-ghost'}`}>{p.cta}</a>
