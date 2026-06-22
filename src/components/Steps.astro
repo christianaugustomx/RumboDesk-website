@@ -1,0 +1,46 @@
+---
+import { type Lang } from "../i18n/ui";
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    heading: "Tres pasos. Una reserva impecable.",
+    sub: "Sin importar de dónde venga la información: email, WhatsApp, PDF, Word, Excel o pegado directo.",
+    pasos: [
+      { n: "1", title: "Ingest", body: "Reenvía el correo a tu inbox de RumboDesk, sube el PDF o pega el texto. Adjuntos incluidos." },
+      { n: "2", title: "Estructura", body: "La IA detecta cliente, proveedor, fechas, costos y arma la reserva. Tú la revisas en segundos." },
+      { n: "3", title: "Confirma", body: "Apruebas y queda guardada con deadlines, comisión, proveedor único y archivo original." },
+    ],
+  },
+  en: {
+    heading: "Three steps. One impeccable booking.",
+    sub: "No matter where the information comes from: email, WhatsApp, PDF, Word, Excel or pasted text.",
+    pasos: [
+      { n: "1", title: "Ingest", body: "Forward the email to your RumboDesk inbox, upload the PDF or paste the text. Attachments included." },
+      { n: "2", title: "Structure", body: "The AI detects client, supplier, dates and costs and builds the booking. You review it in seconds." },
+      { n: "3", title: "Confirm", body: "You approve and it's saved with deadlines, commission, single supplier and the original file." },
+    ],
+  },
+}[lang];
+---
+
+<section class="max-w-[1180px] mx-auto pt-24 px-6">
+  <div class="reveal text-center max-w-[700px] mx-auto mb-[52px]">
+    <h2 class="text-[32px] sm:text-[40px] font-bold text-brand-700">{copy.heading}</h2>
+    <p class="text-lg text-[#42485a] mt-3.5">{copy.sub}</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {
+      copy.pasos.map((p) => (
+        <div class="reveal bg-white border border-[#ecebe7] rounded-[18px] px-7 py-[30px]">
+          <div class="flex items-center gap-3.5 mb-4">
+            <span class="w-10 h-10 rounded-[11px] bg-brand-700 text-white flex items-center justify-center font-display font-bold text-[17px]">{p.n}</span>
+            <h3 class="text-xl font-bold text-brand-700">{p.title}</h3>
+          </div>
+          <p class="text-[15px] leading-[1.6] text-[#42485a]">{p.body}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

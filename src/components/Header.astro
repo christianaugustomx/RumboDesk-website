@@ -1,39 +1,69 @@
 ---
-import { t, routes, type Lang } from '../i18n/ui';
-import { alternatePaths, type PageKey } from '../i18n/utils';
+import Logo from "./Logo.astro";
+import { t, routes, type Lang } from "../i18n/ui";
+import { alternatePaths, type PageKey } from "../i18n/utils";
 
 interface Props { lang: Lang; pageKey: PageKey; }
 const { lang, pageKey } = Astro.props;
 const r = routes[lang];
-const otherLang: Lang = lang === 'es' ? 'en' : 'es';
+const otherLang: Lang = lang === "es" ? "en" : "es";
 const otherPath = alternatePaths[pageKey][otherLang];
+
+const links = [
+  { href: r.product, label: t(lang, "nav.product") },
+  { href: r.pricing, label: t(lang, "nav.pricing") },
+  { href: r.agencies, label: t(lang, "nav.agencies") },
+  { href: r.operators, label: t(lang, "nav.operators") },
+  { href: r.blog, label: t(lang, "nav.blog") },
+];
 ---
 
-<header class="border-b border-gray-200 bg-white/80 backdrop-blur sticky top-0 z-50">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-    <a href={r.home} class="flex items-center gap-2 font-bold text-brand-700 text-lg">
-      <img src="/logo-mark.webp" alt="RumboDesk" width="40" height="40" class="w-10 h-10 rounded-lg" />
-      RumboDesk
-    </a>
+<header
+  id="site-header"
+  class="sticky top-0 z-50 backdrop-blur-md border-b border-transparent transition-[background-color,border-color] duration-300"
+>
+  <nav class="max-w-[1180px] mx-auto px-6 h-[68px] flex items-center gap-8">
+    <Logo />
 
-    <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
-      <a href={r.product} class="hover:text-brand-600">{t(lang, 'nav.product')}</a>
-      <a href={r.pricing} class="hover:text-brand-600">{t(lang, 'nav.pricing')}</a>
-      <a href={r.agencies} class="hover:text-brand-600">{t(lang, 'nav.agencies')}</a>
-      <a href={r.operators} class="hover:text-brand-600">{t(lang, 'nav.operators')}</a>
-      <a href={r.blog} class="hover:text-brand-600">{t(lang, 'nav.blog')}</a>
-    </nav>
+    <div class="hidden md:flex items-center gap-7 flex-1">
+      {
+        links.map((l) => (
+          <a href={l.href} class="text-[15px] font-medium text-brand-600 hover:text-brand-700 transition-colors">
+            {l.label}
+          </a>
+        ))
+      }
+    </div>
 
-    <div class="flex items-center gap-3">
-      <a href={otherPath} class="text-sm font-medium text-gray-600 hover:text-brand-600" aria-label="Switch language">
+    <div class="flex items-center gap-[18px] flex-none ml-auto md:ml-0">
+      <a href={otherPath} class="text-sm font-semibold text-brand-400 tracking-[0.02em] hover:text-brand-600 transition-colors" aria-label="Switch language">
         {otherLang.toUpperCase()}
       </a>
-      <a href="https://rumbodesk.app" class="hidden sm:inline text-sm font-medium text-gray-700 hover:text-brand-600">
-        {t(lang, 'nav.login')}
+      <a href="https://rumbodesk.app" class="hidden sm:inline text-[15px] font-semibold text-brand-700">
+        {t(lang, "nav.login")}
       </a>
-      <a href="https://rumbodesk.app" class="btn-primary text-sm">
-        {t(lang, 'nav.cta')}
+      <a
+        href="https://rumbodesk.app"
+        class="inline-flex items-center px-[18px] py-[9px] bg-accent-500 text-white font-semibold text-[15px] rounded-[10px] shadow-[0_6px_16px_rgba(201,123,74,0.28)] hover:bg-accent-600 hover:-translate-y-0.5 transition-[background-color,transform] duration-200"
+      >
+        {t(lang, "nav.cta")}
       </a>
     </div>
-  </div>
+  </nav>
 </header>
+
+<script>
+  const header = document.getElementById("site-header");
+  const onScroll = () => {
+    if (!header) return;
+    if (window.scrollY > 20) {
+      header.style.backgroundColor = "rgba(250,248,245,0.85)";
+      header.style.borderBottomColor = "rgba(14,31,58,0.08)";
+    } else {
+      header.style.backgroundColor = "rgba(250,248,245,0)";
+      header.style.borderBottomColor = "transparent";
+    }
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+</script>

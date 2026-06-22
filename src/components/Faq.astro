@@ -1,0 +1,84 @@
+---
+import { type Lang } from "../i18n/ui";
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    heading: "Preguntas frecuentes",
+    sub: "Lo que más nos preguntan agencias y operadores antes de empezar.",
+    faqs: [
+      { q: "¿Es seguro compartir los datos de mis clientes?", a: "Sí. Cifrado en tránsito (TLS) y en reposo, aislamiento por organización (multi-tenant) en Supabase, y la IA de Anthropic no usa tus datos para entrenar sus modelos. Tu Aviso de Privacidad bajo LFPDPPP cubre el flujo completo." },
+      { q: "¿Qué formatos puedo reenviar o subir?", a: "Email reenviado, PDF (incluyendo Aeroméxico, Despegar, Booking, Expedia), Word, Excel, texto pegado de WhatsApp, screenshots e imágenes. Cada organización tiene su propio buzón inbox@tu-org.rumbodesk.com." },
+      { q: "¿Necesito tarjeta de crédito para la prueba?", a: "No. La prueba de 14 días no pide tarjeta. Al final puedes contratar Esencial o Profesional, o dejar la cuenta en modo limitado." },
+      { q: "¿La IA se puede equivocar?", a: "Sí — por eso nada llega a tus reservas sin que tú lo confirmes. La IA propone una estructura con el fragmento original como evidencia; tú ajustas y apruebas. Es asistencia, no reemplazo." },
+      { q: "¿Puedo cancelar en cualquier momento?", a: "Sí, sin penalización. Si cancelas, puedes exportar tus datos durante 30 días. Después se eliminan conforme a nuestro Aviso de Privacidad." },
+    ],
+  },
+  en: {
+    heading: "Frequently asked questions",
+    sub: "What agencies and operators ask us most before getting started.",
+    faqs: [
+      { q: "Is it safe to share my clients' data?", a: "Yes. Encryption in transit (TLS) and at rest, per-organization isolation (multi-tenant) on Supabase, and Anthropic's AI does not use your data to train its models. Your Privacy Notice under LFPDPPP covers the full flow." },
+      { q: "What formats can I forward or upload?", a: "Forwarded email, PDF (including Aeroméxico, Despegar, Booking, Expedia), Word, Excel, pasted WhatsApp text, screenshots and images. Each organization gets its own inbox@your-org.rumbodesk.com mailbox." },
+      { q: "Do I need a credit card for the trial?", a: "No. The 14-day trial requires no card. At the end you can subscribe to Essential or Professional, or leave the account in limited mode." },
+      { q: "Can the AI make mistakes?", a: "Yes — that's why nothing reaches your bookings without your confirmation. The AI proposes a structure with the original snippet as evidence; you adjust and approve. It's assistance, not a replacement." },
+      { q: "Can I cancel anytime?", a: "Yes, with no penalty. If you cancel, you can export your data for 30 days. After that it's deleted per our Privacy Notice." },
+    ],
+  },
+}[lang];
+---
+
+<section class="max-w-[820px] mx-auto pt-24 px-6">
+  <div class="reveal text-center mb-11">
+    <h2 class="text-[32px] sm:text-[40px] font-bold text-brand-700">{copy.heading}</h2>
+    <p class="text-lg text-[#42485a] mt-3.5">{copy.sub}</p>
+  </div>
+
+  <div class="reveal bg-white border border-[#ecebe7] rounded-[18px] overflow-hidden">
+    {
+      copy.faqs.map((f, i) => (
+        <div class="faq-item border-t border-[#f1f1ee] first:border-t-0" data-open={i === 0 ? "true" : "false"}>
+          <button
+            type="button"
+            class="faq-toggle w-full flex items-center justify-between gap-4 px-[26px] py-5 bg-transparent border-none cursor-pointer text-left font-display"
+            aria-expanded={i === 0 ? "true" : "false"}
+          >
+            <span class="text-base font-semibold text-brand-700">{f.q}</span>
+            <span class="faq-icon flex-none text-accent-500 text-xl transition-transform duration-200">+</span>
+          </button>
+          <div class="faq-panel overflow-hidden transition-[max-height] duration-300" style={i === 0 ? "max-height:320px" : "max-height:0px"}>
+            <p class="px-[26px] pb-[22px] text-[15px] leading-[1.65] text-[#42485a]">{f.a}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".faq-item").forEach((item) => {
+    const btn = item.querySelector<HTMLButtonElement>(".faq-toggle");
+    const panel = item.querySelector<HTMLElement>(".faq-panel");
+    const icon = item.querySelector<HTMLElement>(".faq-icon");
+    btn?.addEventListener("click", () => {
+      const isOpen = item.dataset.open === "true";
+      // close all
+      document.querySelectorAll<HTMLElement>(".faq-item").forEach((other) => {
+        other.dataset.open = "false";
+        const p = other.querySelector<HTMLElement>(".faq-panel");
+        const ic = other.querySelector<HTMLElement>(".faq-icon");
+        const b = other.querySelector<HTMLButtonElement>(".faq-toggle");
+        if (p) p.style.maxHeight = "0px";
+        if (ic) ic.style.transform = "rotate(0deg)";
+        b?.setAttribute("aria-expanded", "false");
+      });
+      if (!isOpen) {
+        item.dataset.open = "true";
+        if (panel) panel.style.maxHeight = "320px";
+        if (icon) icon.style.transform = "rotate(45deg)";
+        btn?.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+</script>

@@ -1,0 +1,43 @@
+---
+import { routes, type Lang } from "../i18n/ui";
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const r = routes[lang];
+
+const arrow = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C97B4A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`;
+
+const copy = {
+  es: {
+    more: "Ver más",
+    segments: [
+      { id: "agencias", href: r.agencies, emoji: "🧭", title: "Para agencias", body: "Múltiples agentes, múltiples reservas al día, una sola fuente de verdad. CRM, comisiones, vencimientos." },
+      { id: "operadores", href: r.operators, emoji: "🌎", title: "Para operadores", body: "Tus proveedores, tus paquetes, tus tarifas. Pasaportes, visas y deadlines bajo control." },
+    ],
+  },
+  en: {
+    more: "Learn more",
+    segments: [
+      { id: "agencies", href: r.agencies, emoji: "🧭", title: "For agencies", body: "Multiple agents, multiple bookings a day, one single source of truth. CRM, commissions, due dates." },
+      { id: "operators", href: r.operators, emoji: "🌎", title: "For operators", body: "Your suppliers, your packages, your rates. Passports, visas and deadlines under control." },
+    ],
+  },
+}[lang];
+---
+
+<section class="max-w-[1180px] mx-auto pt-[42px] px-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {
+      copy.segments.map((s) => (
+        <a id={s.id} href={s.href} class="reveal block bg-white border border-[#ecebe7] rounded-[20px] px-8 py-[34px] hover:-translate-y-[3px] hover:shadow-[0_18px_40px_-16px_rgba(14,31,58,0.22)] transition-[transform,box-shadow] duration-200">
+          <span class="text-[26px]">{s.emoji}</span>
+          <h3 class="text-[23px] font-bold text-brand-700 mt-3.5">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-[#42485a] mt-2.5">{s.body}</p>
+          <span class="inline-flex items-center gap-1.5 mt-[18px] text-accent-500 font-semibold text-[15px]">
+            {copy.more}
+            <Fragment set:html={arrow} />
+          </span>
+        </a>
+      ))
+    }
+  </div>
+</section>

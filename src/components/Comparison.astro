@@ -1,0 +1,95 @@
+---
+import { type Lang } from "../i18n/ui";
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    heading: "Sin RumboDesk vs. con RumboDesk",
+    sub: "Mismo trabajo. Diez veces menos esfuerzo.",
+    chaosTitle: "El caos de hoy",
+    withTitle: "Con RumboDesk",
+    caos: [
+      { lead: "Emails de confirmación", rest: "reenviados a 4 personas distintas." },
+      { lead: "PDFs de Aeroméxico", rest: "que nadie abre hasta que el cliente reclama." },
+      { lead: "WhatsApp del proveedor", rest: "en un grupo con 38 mensajes anteriores." },
+      { lead: "Excel maestro", rest: "con tres versiones, ninguna actualizada." },
+      { lead: "Errores de dedo:", rest: "una fecha mal, un proveedor duplicado." },
+      { lead: "Deadlines olvidados:", rest: "el depósito que vence el viernes y nadie persigue." },
+    ],
+    con: [
+      { lead: "Un buzón único", rest: "de tu organización para todo: inbox@tu-org.rumbodesk.com." },
+      { lead: "IA que lee PDFs,", rest: "Word, Excel e imágenes y los estructura." },
+      { lead: "Pega WhatsApp", rest: "directo en la app y se vuelve reserva." },
+      { lead: "Un solo lugar", rest: "con la verdad: dashboard, reservas, proveedores." },
+      { lead: "Revisión humana siempre:", rest: "la IA propone, tú confirmas." },
+      { lead: "Deadlines a la vista:", rest: "pagos, depósitos y vencimientos sin sorpresas." },
+    ],
+  },
+  en: {
+    heading: "Without RumboDesk vs. with RumboDesk",
+    sub: "Same work. Ten times less effort.",
+    chaosTitle: "Today's chaos",
+    withTitle: "With RumboDesk",
+    caos: [
+      { lead: "Confirmation emails", rest: "forwarded to 4 different people." },
+      { lead: "Airline PDFs", rest: "no one opens until the client complains." },
+      { lead: "Supplier WhatsApp", rest: "buried in a group with 38 earlier messages." },
+      { lead: "A master Excel", rest: "with three versions, none up to date." },
+      { lead: "Typos:", rest: "a wrong date, a duplicated supplier." },
+      { lead: "Forgotten deadlines:", rest: "the deposit due Friday that no one chases." },
+    ],
+    con: [
+      { lead: "A single inbox", rest: "for your whole org: inbox@your-org.rumbodesk.com." },
+      { lead: "AI that reads PDFs,", rest: "Word, Excel and images and structures them." },
+      { lead: "Paste WhatsApp", rest: "right into the app and it becomes a booking." },
+      { lead: "One place", rest: "for the truth: dashboard, bookings, suppliers." },
+      { lead: "Human review always:", rest: "the AI proposes, you confirm." },
+      { lead: "Deadlines in sight:", rest: "payments, deposits and due dates without surprises." },
+    ],
+  },
+}[lang];
+---
+
+<section id="producto" class="max-w-[1180px] mx-auto pt-24 px-6">
+  <div class="reveal text-center max-w-[680px] mx-auto mb-12">
+    <h2 class="text-[32px] sm:text-[40px] font-bold text-brand-700">{copy.heading}</h2>
+    <p class="text-[19px] text-[#42485a] mt-3.5">{copy.sub}</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Caos -->
+    <div class="reveal bg-white border border-[#ecebe7] rounded-[20px] px-8 py-[34px]">
+      <div class="flex items-center gap-[11px] mb-[22px]">
+        <span class="w-10 h-10 rounded-[11px] bg-[#fdeceb] flex items-center justify-center text-[19px]">⚠️</span>
+        <h3 class="text-[21px] font-bold text-brand-700">{copy.chaosTitle}</h3>
+      </div>
+      {
+        copy.caos.map((c) => (
+          <div class="flex gap-3 py-[11px] border-t border-[#f4f3ef] items-start">
+            <span class="flex-none w-5 h-5 rounded-full bg-[#fbe3e1] text-[#B8372A] flex items-center justify-center text-xs font-bold mt-px">✕</span>
+            <p class="text-[15px] leading-[1.5] text-[#42485a]"><strong class="text-ink font-semibold">{c.lead}</strong> {c.rest}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Con -->
+    <div class="reveal rounded-[20px] px-8 py-[34px] bg-gradient-to-br from-[#142a4f] to-brand-700 shadow-[0_24px_50px_-18px_rgba(14,31,58,0.45)]">
+      <div class="flex items-center gap-[11px] mb-[22px]">
+        <span class="w-10 h-10 rounded-[11px] bg-[rgba(201,123,74,0.22)] flex items-center justify-center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e9c2a3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+        </span>
+        <h3 class="text-[21px] font-bold text-white">{copy.withTitle}</h3>
+      </div>
+      {
+        copy.con.map((c) => (
+          <div class="flex gap-3 py-[11px] border-t border-white/10 items-start">
+            <span class="flex-none w-5 h-5 rounded-full bg-[rgba(47,158,111,0.25)] text-[#5fd6a3] flex items-center justify-center text-xs font-bold mt-px">✓</span>
+            <p class="text-[15px] leading-[1.5] text-brand-100"><strong class="text-white font-semibold">{c.lead}</strong> {c.rest}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

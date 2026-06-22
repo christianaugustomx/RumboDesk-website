@@ -1,0 +1,112 @@
+---
+import { routes, type Lang } from "../i18n/ui";
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const r = routes[lang];
+
+const copy = {
+  es: {
+    badge: "🇲🇽 Hecho en México · Para LATAM",
+    h1: "El copiloto de IA para agencias de viaje en LATAM.",
+    sub: "Deja de copiar y pegar. Reenvía el correo, sube el PDF o pega el WhatsApp — RumboDesk lo estructura como reserva en segundos. Tú revisas y confirmas.",
+    ctaPrimary: "Probar gratis",
+    ctaSecondary: "Ver cómo funciona",
+    microcopy: "Sin tarjeta · 14 días de prueba · Español e inglés",
+    viewTitle: "Reservas",
+    viewMeta: "47 activas · 6 ingestiones pendientes",
+    newBtn: "+ Nueva reserva",
+    cols: ["Cliente", "Destino", "Fechas", "Estado", "Monto"],
+    reservas: [
+      { cliente: "María Restrepo", destino: "Cancún", fechas: "12–18 Mar", estado: "Confirmada", cls: "text-[#1c7a55] bg-[#e4f4ec]", monto: "$42,800" },
+      { cliente: "Bufete Soto", destino: "Madrid (grupo)", fechas: "03–11 Abr", estado: "Pendiente", cls: "text-accent-700 bg-accent-50", monto: "$128,500" },
+      { cliente: "Carlos Méndez", destino: "Buenos Aires", fechas: "22 Mar", estado: "Depósito", cls: "text-[#2f4b80] bg-brand-50", monto: "$18,200" },
+      { cliente: "Lucía Fernández", destino: "Punta Cana", fechas: "05–12 May", estado: "Confirmada", cls: "text-[#1c7a55] bg-[#e4f4ec]", monto: "$63,400" },
+    ],
+  },
+  en: {
+    badge: "🇲🇽 Made in Mexico · For LATAM",
+    h1: "The AI copilot for travel agencies in LATAM.",
+    sub: "Stop copying and pasting. Forward the email, upload the PDF or paste the WhatsApp — RumboDesk structures it into a booking in seconds. You review and confirm.",
+    ctaPrimary: "Try it free",
+    ctaSecondary: "See how it works",
+    microcopy: "No card · 14-day trial · Spanish & English",
+    viewTitle: "Bookings",
+    viewMeta: "47 active · 6 pending ingestions",
+    newBtn: "+ New booking",
+    cols: ["Client", "Destination", "Dates", "Status", "Amount"],
+    reservas: [
+      { cliente: "María Restrepo", destino: "Cancún", fechas: "Mar 12–18", estado: "Confirmed", cls: "text-[#1c7a55] bg-[#e4f4ec]", monto: "$42,800" },
+      { cliente: "Bufete Soto", destino: "Madrid (group)", fechas: "Apr 03–11", estado: "Pending", cls: "text-accent-700 bg-accent-50", monto: "$128,500" },
+      { cliente: "Carlos Méndez", destino: "Buenos Aires", fechas: "Mar 22", estado: "Deposit", cls: "text-[#2f4b80] bg-brand-50", monto: "$18,200" },
+      { cliente: "Lucía Fernández", destino: "Punta Cana", fechas: "May 05–12", estado: "Confirmed", cls: "text-[#1c7a55] bg-[#e4f4ec]", monto: "$63,400" },
+    ],
+  },
+}[lang];
+
+const cols = "grid grid-cols-[1.4fr_1.2fr_1fr_0.9fr_0.8fr] gap-3";
+---
+
+<section id="top" class="pt-[84px] px-6 relative">
+  <div class="absolute -top-20 -left-30 w-[420px] h-[420px] rounded-full bg-[radial-gradient(circle,rgba(30,58,107,0.10),transparent_70%)] pointer-events-none"></div>
+  <div class="absolute top-[140px] -right-36 w-[420px] h-[420px] rounded-full bg-[radial-gradient(circle,rgba(201,123,74,0.12),transparent_70%)] pointer-events-none"></div>
+
+  <div class="max-w-[880px] mx-auto text-center relative">
+    <span class="inline-flex items-center gap-[7px] px-[15px] py-[7px] bg-accent-50 border border-accent-100 rounded-full text-[13px] font-semibold text-accent-700">
+      {copy.badge}
+    </span>
+    <h1 class="text-[40px] sm:text-[60px] leading-[1.05] font-bold text-brand-700 mt-[26px] text-balance">
+      {copy.h1}
+    </h1>
+    <p class="text-xl leading-[1.55] text-[#42485a] mt-6 max-w-[660px] mx-auto">
+      {copy.sub}
+    </p>
+    <div class="flex gap-3.5 justify-center mt-[34px] flex-wrap">
+      <a
+        href="https://rumbodesk.app"
+        class="inline-flex items-center gap-2 px-[26px] py-3.5 bg-accent-500 text-white font-semibold text-base rounded-[11px] shadow-[0_10px_24px_rgba(201,123,74,0.30)] hover:bg-accent-600 hover:-translate-y-[3px] transition-[background-color,transform] duration-200"
+      >
+        {copy.ctaPrimary}
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+      <a href={r.product} class="inline-flex items-center px-[26px] py-3.5 text-brand-700 font-semibold text-base rounded-[11px] border border-brand-300 bg-white hover:bg-brand-50 transition-colors">
+        {copy.ctaSecondary}
+      </a>
+    </div>
+    <p class="text-sm text-[#6b7280] mt-5">{copy.microcopy}</p>
+  </div>
+
+  <!-- Reservas product view -->
+  <div class="reveal max-w-[1060px] mx-auto mt-[54px] rounded-[20px] bg-white shadow-[0_30px_70px_-20px_rgba(14,31,58,0.30),0_0_0_1px_rgba(14,31,58,0.06)] overflow-hidden">
+    <div class="h-[42px] flex items-center gap-[7px] px-4 bg-brand-700">
+      <span class="w-[11px] h-[11px] rounded-full bg-accent-500"></span>
+      <span class="w-[11px] h-[11px] rounded-full bg-brand-400"></span>
+      <span class="w-[11px] h-[11px] rounded-full bg-[#2f9e6f]"></span>
+      <span class="ml-3.5 text-[13px] text-brand-200 font-medium">app.rumbodesk.com / {lang === "es" ? "reservas" : "bookings"}</span>
+    </div>
+    <div class="px-[26px] pt-[22px] pb-7">
+      <div class="flex items-center justify-between mb-[18px]">
+        <div>
+          <h3 class="text-[19px] font-bold text-brand-700">{copy.viewTitle}</h3>
+          <p class="text-[13px] text-[#6b7280] mt-0.5">{copy.viewMeta}</p>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-accent-500 text-white text-[13px] font-semibold rounded-[9px]">{copy.newBtn}</span>
+      </div>
+      <div class="border border-[#eef0f3] rounded-[13px] overflow-hidden">
+        <div class={`${cols} px-[18px] py-[11px] bg-[#f6f4f0] text-[11px] font-semibold text-[#6b7280] tracking-[0.06em] uppercase`}>
+          <span>{copy.cols[0]}</span><span>{copy.cols[1]}</span><span>{copy.cols[2]}</span><span>{copy.cols[3]}</span><span class="text-right">{copy.cols[4]}</span>
+        </div>
+        {
+          copy.reservas.map((row) => (
+            <div class={`${cols} px-[18px] py-[15px] border-t border-[#f1f1ee] items-center text-sm`}>
+              <span class="font-semibold text-ink">{row.cliente}</span>
+              <span class="text-[#42485a]">{row.destino}</span>
+              <span class="text-[#42485a]">{row.fechas}</span>
+              <span><span class={`inline-block px-2.5 py-1 rounded-full text-xs font-semibold ${row.cls}`}>{row.estado}</span></span>
+              <span class="text-right font-semibold text-brand-700 tabular-nums">{row.monto}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

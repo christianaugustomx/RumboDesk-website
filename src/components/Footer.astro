@@ -1,48 +1,56 @@
 ---
-import { t, routes, type Lang } from '../i18n/ui';
+import Logo from "./Logo.astro";
+import { t, routes, type Lang } from "../i18n/ui";
+
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const r = routes[lang];
+
+const producto = [
+  { href: r.product, label: t(lang, "nav.product") },
+  { href: r.pricing, label: t(lang, "nav.pricing") },
+  { href: r.agencies, label: t(lang, "nav.agencies") },
+  { href: r.operators, label: t(lang, "nav.operators") },
+];
+const empresa = [
+  { href: r.blog, label: t(lang, "nav.blog") },
+  { href: r.contact, label: t(lang, "nav.contact") },
+  { href: "https://rumbodesk.app", label: t(lang, "nav.login") },
+];
+const privHref = lang === "es" ? "/privacidad" : "/en/privacy";
+const termsHref = lang === "es" ? "/terminos" : "/en/terms";
 ---
 
-<footer class="border-t border-gray-200 bg-white mt-24">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid gap-10 md:grid-cols-4">
-    <div class="md:col-span-2">
-      <div class="flex items-center gap-2 font-bold text-brand-700 text-lg">
-        <img src="/logo-mark.webp" alt="RumboDesk" width="40" height="40" class="w-10 h-10 rounded-lg" />
-        RumboDesk
+<footer class="bg-brand-700 text-brand-100 pt-16 px-6 pb-9">
+  <div class="max-w-[1180px] mx-auto grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-10">
+    <div>
+      <Logo dark />
+      <p class="text-base text-white font-semibold mt-[18px]">{t(lang, "brand.lema")}</p>
+      <p class="text-sm text-[#9fb0cc] mt-1.5 max-w-[300px] leading-[1.55]">
+        {t(lang, "footer.tagline")}
+      </p>
+    </div>
+
+    <div>
+      <h4 class="text-[13px] font-semibold text-white tracking-[0.05em] uppercase mb-4">{t(lang, "footer.product")}</h4>
+      <div class="flex flex-col gap-[11px] text-sm">
+        {producto.map((l) => <a href={l.href} class="text-[#9fb0cc] hover:text-white transition-colors">{l.label}</a>)}
       </div>
-      <p class="mt-3 text-sm font-medium text-accent-700">{t(lang, 'brand.lema')}</p>
-      <p class="mt-2 text-sm text-gray-600 max-w-sm">{t(lang, 'footer.tagline')}</p>
     </div>
 
     <div>
-      <h4 class="font-semibold text-sm text-gray-900">{t(lang, 'footer.product')}</h4>
-      <ul class="mt-3 space-y-2 text-sm text-gray-600">
-        <li><a href={r.product} class="hover:text-brand-600">{t(lang, 'nav.product')}</a></li>
-        <li><a href={r.pricing} class="hover:text-brand-600">{t(lang, 'nav.pricing')}</a></li>
-        <li><a href={r.agencies} class="hover:text-brand-600">{t(lang, 'nav.agencies')}</a></li>
-        <li><a href={r.operators} class="hover:text-brand-600">{t(lang, 'nav.operators')}</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4 class="font-semibold text-sm text-gray-900">{t(lang, 'footer.company')}</h4>
-      <ul class="mt-3 space-y-2 text-sm text-gray-600">
-        <li><a href={r.blog} class="hover:text-brand-600">{t(lang, 'nav.blog')}</a></li>
-        <li><a href={r.contact} class="hover:text-brand-600">{t(lang, 'nav.contact')}</a></li>
-        <li><a href="https://rumbodesk.app" class="hover:text-brand-600">{t(lang, 'nav.login')}</a></li>
-      </ul>
+      <h4 class="text-[13px] font-semibold text-white tracking-[0.05em] uppercase mb-4">{t(lang, "footer.company")}</h4>
+      <div class="flex flex-col gap-[11px] text-sm">
+        {empresa.map((l) => <a href={l.href} class="text-[#9fb0cc] hover:text-white transition-colors">{l.label}</a>)}
+      </div>
     </div>
   </div>
 
-  <div class="border-t border-gray-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-xs text-gray-500 flex flex-wrap items-center justify-between gap-3">
-      <span>{t(lang, 'footer.copy')}</span>
-      <span class="flex gap-4">
-        <a href={lang === 'es' ? '/privacidad' : '/en/privacy'} class="hover:text-brand-600">{t(lang, 'footer.privacy')}</a>
-        <a href={lang === 'es' ? '/terminos' : '/en/terms'} class="hover:text-brand-600">{t(lang, 'footer.terms')}</a>
-      </span>
+  <div class="max-w-[1180px] mx-auto mt-10 pt-6 border-t border-white/12 flex items-center justify-between flex-wrap gap-3.5 text-[13px] text-[#9fb0cc]">
+    <span>{t(lang, "footer.copy")}</span>
+    <div class="flex gap-6">
+      <a href={privHref} class="text-[#9fb0cc] hover:text-white transition-colors">{t(lang, "footer.privacy")}</a>
+      <a href={termsHref} class="text-[#9fb0cc] hover:text-white transition-colors">{t(lang, "footer.terms")}</a>
     </div>
   </div>
 </footer>

@@ -1,0 +1,16 @@
+---
+// Marca oficial RumboDesk: logo navy + wordmark. `dark` cambia el color del
+// texto para fondos oscuros (footer). La imagen es la misma en ambos casos.
+export interface Props {
+  dark?: boolean;
+  class?: string;
+}
+const { dark = false, class: className = "" } = Astro.props;
+---
+
+<a href="/" class={`flex items-center gap-2.5 flex-none ${className}`} aria-label="RumboDesk">
+  <img src="/logo-mark-white.webp" alt="RumboDesk" width="32" height="32" class="w-8 h-8 rounded-[9px]" />
+  <span class={`font-display font-bold text-xl tracking-[-0.03em] ${dark ? "text-white" : "text-brand-700"}`}>
+    Rumbo<span class="text-accent-500">Desk</span>
+  </span>
+</a>
