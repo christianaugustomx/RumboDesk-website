@@ -28,10 +28,30 @@ const orgSchema = {
   url: 'https://rumbodesk.com',
   logo: 'https://rumbodesk.com/logo-mark-white.webp',
   sameAs: ['https://rumbodesk.app'],
+  slogan: t(lang, 'brand.lema'),
+  areaServed: 'Latin America',
   description: lang === 'es'
     ? 'Portal SaaS para operadores y agencias de viaje en LATAM.'
     : 'SaaS portal for tour operators and travel agencies across LATAM.',
 };
+
+const websiteSchema = pageKey === 'home' ? {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'RumboDesk',
+  url: 'https://rumbodesk.com',
+  inLanguage: lang === 'es' ? 'es-MX' : 'en-US',
+  publisher: { '@type': 'Organization', name: 'RumboDesk' },
+} : null;
+
+const breadcrumbSchema = pageKey !== 'home' ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: lang === 'es' ? 'Inicio' : 'Home', item: lang === 'es' ? site + '/' : site + '/en' },
+    { '@type': 'ListItem', position: 2, name: title.split(' — ')[0].split(' · ')[0].trim(), item: canonical },
+  ],
+} : null;
 
 const softwareSchema = pageKey === 'home' ? {
   '@context': 'https://schema.org',
@@ -60,6 +80,8 @@ const softwareSchema = pageKey === 'home' ? {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#0E1F3A" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -93,6 +115,8 @@ const softwareSchema = pageKey === 'home' ? {
 
     <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
     {softwareSchema && <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />}
+    {websiteSchema && <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />}
+    {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
   </head>
   <body class="min-h-screen flex flex-col">
     <Header lang={lang} pageKey={pageKey} />
