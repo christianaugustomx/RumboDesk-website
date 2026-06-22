@@ -32,6 +32,25 @@ const orgSchema = {
     ? 'Portal SaaS para operadores y agencias de viaje en LATAM.'
     : 'SaaS portal for tour operators and travel agencies across LATAM.',
 };
+
+const softwareSchema = pageKey === 'home' ? {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'RumboDesk',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  url: 'https://rumbodesk.com',
+  description: lang === 'es'
+    ? 'ERP ligero con IA para agencias y operadores de viaje en LATAM. Captura por email, reservas, clientes, proveedores y facturación, sin teclear.'
+    : 'AI-powered lightweight ERP for travel agencies and tour operators in LATAM. Email capture, bookings, clients, suppliers and billing, without typing.',
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'MXN',
+    lowPrice: '799',
+    highPrice: '1599',
+    offerCount: '2',
+  },
+} : null;
 ---
 
 <!doctype html>
@@ -73,6 +92,7 @@ const orgSchema = {
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,700&display=swap" rel="stylesheet" />
 
     <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    {softwareSchema && <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />}
   </head>
   <body class="min-h-screen flex flex-col">
     <Header lang={lang} pageKey={pageKey} />
