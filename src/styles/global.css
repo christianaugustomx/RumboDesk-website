@@ -119,3 +119,110 @@ h1, h2, h3, h4 {
     transform: none;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Article prose (Blog) — estiliza el markdown renderizado (<Content />).
+   Usa la paleta navy/cobre del sitio; no depende de @tailwindcss/typography.
+--------------------------------------------------------------------------- */
+.article {
+  color: var(--color-ink);
+  font-size: 1.075rem;
+  line-height: 1.75;
+}
+.article > * + * {
+  margin-top: 1.35em;
+}
+.article h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-brand-900);
+  line-height: 1.25;
+  margin-top: 2.4rem;
+  scroll-margin-top: 90px;
+}
+.article h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-brand-800);
+  margin-top: 1.9rem;
+  scroll-margin-top: 90px;
+}
+.article p {
+  color: #33383f;
+}
+.article a {
+  color: var(--color-accent-600);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--color-accent-600) 40%, transparent);
+}
+.article a:hover {
+  color: var(--color-accent-700);
+  text-decoration-color: currentColor;
+}
+.article strong {
+  color: var(--color-brand-900);
+  font-weight: 700;
+}
+.article ul,
+.article ol {
+  padding-left: 1.4rem;
+}
+.article ul { list-style: disc; }
+.article ol { list-style: decimal; }
+.article li { margin-top: 0.5rem; }
+.article li::marker { color: var(--color-accent-500); }
+
+.article blockquote {
+  margin-top: 2rem;
+  border: 1px solid var(--color-brand-100);
+  border-left: 4px solid var(--color-accent-500);
+  background: var(--color-paper);
+  border-radius: 0.75rem;
+  padding: 1.15rem 1.4rem;
+  color: var(--color-brand-800);
+}
+.article blockquote p { margin: 0; }
+.article blockquote p + p { margin-top: 0.75rem; }
+
+.article table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  margin-top: 1.6rem;
+  display: block;
+  overflow-x: auto;
+}
+.article th,
+.article td {
+  border: 1px solid var(--color-brand-100);
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+}
+.article thead th {
+  background: var(--color-brand-50);
+  color: var(--color-brand-900);
+  font-weight: 700;
+}
+.article tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--color-brand-50) 45%, transparent);
+}
+
+.article code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  background: var(--color-brand-50);
+  color: var(--color-brand-700);
+  padding: 0.12em 0.4em;
+  border-radius: 0.35rem;
+}
+.article hr {
+  border: 0;
+  border-top: 1px solid var(--color-brand-100);
+  margin: 2.4rem 0;
+}
