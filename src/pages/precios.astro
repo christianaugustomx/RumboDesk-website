@@ -9,6 +9,8 @@ const plans = [
     name: 'Esencial',
     price: '$499',
     period: '/mes',
+    annualPrice: '$4,990',
+    annualEquivalent: '$416',
     audience: 'Operadores y agentes independientes que arrancan',
     bullets: [
       'Hasta 50 reservas al mes',
@@ -24,6 +26,8 @@ const plans = [
     name: 'Profesional',
     price: '$999',
     period: '/mes',
+    annualPrice: '$9,990',
+    annualEquivalent: '$833',
     audience: 'Agencias pequeñas y operadores en crecimiento',
     bullets: [
       'Reservas ilimitadas',
@@ -49,6 +53,14 @@ const plans = [
         <span class="flex items-center gap-1.5"><span class="text-accent-500">✓</span>Sin plazos forzosos</span>
         <span class="flex items-center gap-1.5"><span class="text-accent-500">✓</span>Cancela en cualquier momento</span>
       </div>
+
+      <div class="mt-8 inline-flex items-center gap-1 p-1 rounded-full bg-white border border-gray-200" id="billing-toggle">
+        <button type="button" class="billing-toggle-btn px-4 py-2 rounded-full text-sm font-semibold transition-colors" data-billing="monthly">Mensual</button>
+        <button type="button" class="billing-toggle-btn flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-colors" data-billing="annual">
+          Anual
+          <span class="text-[11px] font-bold text-white bg-accent-500 px-2 py-0.5 rounded-full whitespace-nowrap">2 meses gratis</span>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -59,9 +71,18 @@ const plans = [
           {p.highlight && <div class="text-xs font-bold uppercase tracking-wide text-brand-600 mb-2">Más popular</div>}
           <h3 class="text-2xl font-bold text-brand-900">{p.name}</h3>
           <p class="mt-1 text-sm text-gray-600">{p.audience}</p>
-          <div class="mt-6 flex items-baseline gap-1">
-            <span class="text-4xl font-extrabold text-brand-900">{p.price}</span>
-            <span class="text-gray-600">{p.period} MXN</span>
+          <div class="mt-6" data-price-monthly>
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-extrabold text-brand-900">{p.price}</span>
+              <span class="text-gray-600">{p.period} MXN</span>
+            </div>
+          </div>
+          <div class="mt-6 hidden" data-price-annual>
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-extrabold text-brand-900">{p.annualPrice}</span>
+              <span class="text-gray-600">/año MXN</span>
+            </div>
+            <p class="mt-1 text-sm text-gray-500">≈ {p.annualEquivalent}/mes · 2 meses gratis</p>
           </div>
           <ul class="mt-6 space-y-3 text-sm text-gray-700">
             {p.bullets.map(b => (
@@ -84,3 +105,20 @@ const plans = [
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  function setBilling(mode: string) {
+    document.querySelectorAll('[data-price-monthly]').forEach((el) => el.classList.toggle('hidden', mode !== 'monthly'));
+    document.querySelectorAll('[data-price-annual]').forEach((el) => el.classList.toggle('hidden', mode !== 'annual'));
+    document.querySelectorAll('.billing-toggle-btn').forEach((btn) => {
+      const active = (btn as HTMLElement).dataset.billing === mode;
+      btn.classList.toggle('bg-accent-500', active);
+      btn.classList.toggle('text-white', active);
+      btn.classList.toggle('text-brand-600', !active);
+    });
+  }
+  document.querySelectorAll('.billing-toggle-btn').forEach((btn) => {
+    btn.addEventListener('click', () => setBilling((btn as HTMLElement).dataset.billing || 'monthly'));
+  });
+  setBilling('monthly');
+</script>
