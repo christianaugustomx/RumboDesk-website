@@ -1,6 +1,6 @@
 ---
 import Logo from "./Logo.astro";
-import { t, routes, type Lang } from "../i18n/ui";
+import { t, routes, languages, languageFlags, type Lang } from "../i18n/ui";
 import { alternatePaths, type PageKey } from "../i18n/utils";
 
 interface Props { lang: Lang; pageKey: PageKey; }
@@ -36,8 +36,13 @@ const links = [
     </div>
 
     <div class="flex items-center gap-[18px] flex-none ml-auto md:ml-0">
-      <a href={otherPath} class="text-sm font-semibold text-brand-400 tracking-[0.02em] hover:text-brand-600 transition-colors" aria-label="Switch language">
-        {otherLang.toUpperCase()}
+      <a
+        href={otherPath}
+        class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-brand-200 text-sm font-semibold text-brand-500 hover:border-brand-300 hover:text-brand-700 hover:bg-brand-50 transition-colors"
+        aria-label="Switch language"
+      >
+        <span aria-hidden="true">{languageFlags[otherLang]}</span>
+        <span class="hidden sm:inline">{languages[otherLang]}</span>
       </a>
       <a href="https://rumbodesk.app" class="hidden sm:inline text-[15px] font-semibold text-brand-700">
         {t(lang, "nav.login")}

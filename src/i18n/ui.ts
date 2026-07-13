@@ -3,6 +3,11 @@ export const languages = {
   en: 'English',
 } as const;
 
+export const languageFlags = {
+  es: '🇲🇽',
+  en: '🇺🇸',
+} as const;
+
 export type Lang = keyof typeof languages;
 export const defaultLang: Lang = 'es';
 
