@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0E1F3A" />
+    <meta name="robots" content="noindex,follow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <title>Darme de baja — RumboDesk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen flex items-center justify-center px-6 text-center">
+    <div class="max-w-md">
+      <img src="/logo-mark-white.webp" alt="RumboDesk" width="56" height="56" class="w-14 h-14 rounded-[12px] mx-auto" />
+
+      <div id="state-confirm" class="hidden mt-8">
+        <h1 class="font-display text-2xl font-bold text-brand-700">¿Confirmar baja?</h1>
+        <p class="text-[#42485a] mt-3">
+          Vamos a dejar de escribirle a <b id="confirm-email" class="text-brand-700"></b>.
+          Si no fuiste tú quien pidió esto, cierra esta página sin problema.
+        </p>
+        <button
+          id="confirm-btn"
+          type="button"
+          class="mt-7 inline-flex items-center px-[22px] py-3 bg-accent-500 text-white font-semibold rounded-[11px] shadow-[0_8px_20px_rgba(201,123,74,0.28)] hover:bg-accent-600 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          Sí, darme de baja
+        </button>
+      </div>
+
+      <div id="state-done" class="hidden mt-8">
+        <h1 class="font-display text-2xl font-bold text-brand-700">Listo, ya no te vamos a escribir</h1>
+        <p class="text-[#42485a] mt-3">
+          <b id="done-email" class="text-brand-700"></b> quedó fuera de nuestra lista de prospección.
+          Puede tomar un momento en reflejarse si ya había un envío en curso.
+        </p>
+      </div>
+
+      <div id="state-error" class="hidden mt-8">
+        <h1 class="font-display text-2xl font-bold text-brand-700">Algo falló</h1>
+        <p class="text-[#42485a] mt-3">
+          No pudimos procesar la baja en automático. Escríbenos a
+          <a href="mailto:hola@rumbodesk.com" class="text-accent-600 underline">hola@rumbodesk.com</a>
+          y te sacamos de la lista a mano.
+        </p>
+      </div>
+
+      <div id="state-invalid" class="hidden mt-8">
+        <h1 class="font-display text-2xl font-bold text-brand-700">Link inválido</h1>
+        <p class="text-[#42485a] mt-3">Este link de baja no es válido o ya expiró.</p>
+      </div>
+
+      <div class="mt-7">
+        <a href="/" class="inline-flex items-center px-[22px] py-3 text-brand-700 font-semibold rounded-[11px] border border-brand-300 bg-white hover:bg-brand-50 transition-colors">
+          Ir al inicio
+        </a>
+      </div>
+    </div>
+
+    <script>
+      const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const UNSUBSCRIBE_FN_URL = 'https://pfenaocdkmykfljxychs.functions.supabase.co/outreach-unsubscribe';
+
+      function show(id: string) {
+        document.getElementById(id)?.classList.remove('hidden');
+      }
+
+      const email = (new URLSearchParams(location.search).get('email') ?? '').trim().toLowerCase();
+
+      if (!EMAIL_RE.test(email)) {
+        show('state-invalid');
+      } else {
+        document.getElementById('confirm-email')!.textContent = email;
+        document.getElementById('done-email')!.textContent = email;
+        show('state-confirm');
+
+        document.getElementById('confirm-btn')?.addEventListener('click', async (e) => {
+          const btn = e.currentTarget as HTMLButtonElement;
+          btn.disabled = true;
+          btn.textContent = 'Procesando…';
+          try {
+            const res = await fetch(UNSUBSCRIBE_FN_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email }),
+            });
+            if (!res.ok) throw new Error('request_failed');
+            document.getElementById('state-confirm')?.classList.add('hidden');
+            show('state-done');
+          } catch {
+            document.getElementById('state-confirm')?.classList.add('hidden');
+            show('state-error');
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
