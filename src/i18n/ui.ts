@@ -15,6 +15,7 @@ export const routes = {
   es: {
     home: '/',
     product: '/producto',
+    howItWorks: '/como-funciona',
     pricing: '/precios',
     agencies: '/para-agencias',
     operators: '/para-operadores',
@@ -24,6 +25,7 @@ export const routes = {
   en: {
     home: '/en',
     product: '/en/product',
+    howItWorks: '/en/how-it-works',
     pricing: '/en/pricing',
     agencies: '/en/for-agencies',
     operators: '/en/for-operators',
@@ -37,6 +39,7 @@ export const ui = {
     'meta.locale': 'es_MX',
     'brand.lema': 'Pon tu negocio en rumbo.',
     'nav.product': 'Producto',
+    'nav.howItWorks': 'Cómo funciona',
     'nav.pricing': 'Precios',
     'nav.agencies': 'Agencias',
     'nav.operators': 'Operadores',
@@ -56,6 +59,7 @@ export const ui = {
     'meta.locale': 'en_US',
     'brand.lema': 'Put your business on course.',
     'nav.product': 'Product',
+    'nav.howItWorks': 'How it works',
     'nav.pricing': 'Pricing',
     'nav.agencies': 'Agencies',
     'nav.operators': 'Operators',

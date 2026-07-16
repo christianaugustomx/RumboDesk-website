@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FinalCta from '../../components/FinalCta.astro';
+
+const lang = 'en' as const;
+const title = 'How it works — RumboDesk · From a loose message to an organized booking';
+const description = "Forward the email, the WhatsApp note or the PDF. The AI structures it. You review and confirm. That's how any message becomes an organized booking — without typing anything by hand.";
+
+const pasos = [
+  {
+    n: '1',
+    title: 'You send the information as it arrives',
+    body: 'Forward the confirmation email, paste the WhatsApp note, or upload the PDF, Word or Excel itinerary. However it reached you — no forms to fill out.',
+  },
+  {
+    n: '2',
+    title: 'The AI reads and structures it in seconds',
+    body: 'It extracts dates, hotel, flight, supplier, passengers and costs automatically — no matter the format or language it arrived in.',
+  },
+  {
+    n: '3',
+    title: 'You review before anything is saved',
+    body: 'You see exactly what was detected and fix whatever needs it. The AI never writes directly to your bookings — nothing is created without your approval.',
+    checkpoint: true,
+  },
+  {
+    n: '4',
+    title: 'You confirm with one click',
+    body: 'The real booking is created: reference number, client, supplier and passengers — all linked and organized, ready to work with.',
+  },
+  {
+    n: '5',
+    title: 'It stays traceable for good',
+    body: 'Collections, reports and change history, all in one place — without ever typing a single cell by hand.',
+  },
+];
+
+const campos = [
+  { k: 'Client', v: 'Mariana Hernández' },
+  { k: 'Destination', v: 'Cancún, Mexico' },
+  { k: 'Dates', v: 'Sept 14–21, 2026' },
+  { k: 'Hotel', v: 'Gran Fiesta Americana Coral Beach · Double' },
+  { k: 'Passengers', v: 'Mariana Hernández, Roberto Ibarra' },
+  { k: 'Flight', v: 'AM442 · MEX→CUN · 08:15' },
+  { k: 'Cost', v: '$38,400 MXN' },
+];
+---
+
+<BaseLayout lang={lang} pageKey="howItWorks" title={title} description={description}>
+  <section class="max-w-[900px] mx-auto pt-20 px-6 text-center">
+    <h1 class="reveal text-4xl sm:text-5xl font-bold text-brand-700 leading-[1.1]">
+      You forward it. RumboDesk sorts it out.
+    </h1>
+    <p class="reveal text-lg text-[#42485a] mt-5 max-w-[560px] mx-auto">
+      No templates to fill in, nothing to type by hand. Paste or forward the information exactly
+      as it arrives — we turn it into a booking that's ready to work with.
+    </p>
+  </section>
+
+  <section class="max-w-[820px] mx-auto pt-20 px-6">
+    <div class="space-y-5">
+      {
+        pasos.map((p) => (
+          <div
+            class:list={[
+              'reveal flex gap-5 rounded-[18px] px-6 py-6 border',
+              p.checkpoint
+                ? 'bg-accent-50 border-accent-200'
+                : 'bg-white border-[#ecebe7]',
+            ]}
+          >
+            <span
+              class:list={[
+                'shrink-0 w-11 h-11 rounded-[11px] text-white flex items-center justify-center font-display font-bold text-[18px]',
+                p.checkpoint ? 'bg-accent-500' : 'bg-brand-700',
+              ]}
+            >
+              {p.n}
+            </span>
+            <div>
+              {p.checkpoint && (
+                <p class="text-[12px] font-semibold text-accent-600 tracking-[0.06em] uppercase mb-1">
+                  Checkpoint
+                </p>
+              )}
+              <h3 class="text-xl font-bold text-brand-700">{p.title}</h3>
+              <p class="text-[15px] leading-[1.6] text-[#42485a] mt-1.5">{p.body}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="max-w-[1180px] mx-auto pt-24 px-6">
+    <div class="reveal text-center max-w-[680px] mx-auto mb-12">
+      <h2 class="text-[32px] sm:text-[40px] font-bold text-brand-700">A real example</h2>
+      <p class="text-[19px] text-[#42485a] mt-3.5">From a loose message to data that's ready to work with.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 items-center">
+      <div class="reveal bg-white border border-[#ecebe7] rounded-[18px] px-6 py-6">
+        <p class="text-[12px] font-semibold text-[#6b7280] tracking-[0.05em] uppercase mb-3">
+          Note forwarded over WhatsApp
+        </p>
+        <p class="text-[15px] leading-[1.65] text-ink">
+          Hey! sending you the details for the Hernández family booking 🙌
+          <br /><br />
+          They're traveling September 14–21 to Cancún. Staying at the Grand Fiesta Americana
+          Coral Beach, double room. There are 2: Mariana Hernández and Roberto Ibarra.
+          <br /><br />
+          The hotel costs 38,400 pesos. Aeroméxico flight AM442, departs Sept 14 08:15 from
+          Mexico City.
+        </p>
+      </div>
+
+      <div class="reveal hidden md:flex items-center justify-center text-accent-500" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 12h16M14 6l6 6-6 6"></path>
+        </svg>
+      </div>
+
+      <div class="reveal rounded-[18px] bg-white shadow-[0_20px_48px_-20px_rgba(14,31,58,0.28),0_0_0_1px_rgba(14,31,58,0.05)] overflow-hidden">
+        <div class="h-9 flex items-center justify-between px-3.5 bg-brand-700">
+          <span class="text-white text-[11px] font-bold tracking-[0.05em]">RUMBODESK</span>
+          <span class="text-accent-200 text-[11px] font-semibold">RB-2026-0812</span>
+        </div>
+        <div class="px-5 py-2">
+          {
+            campos.map((c) => (
+              <div class="flex items-start gap-3 py-3 border-t border-[#f1f1ee] first:border-t-0">
+                <span class="w-24 shrink-0 text-[11px] font-bold text-accent-600 tracking-[0.04em] uppercase pt-0.5">
+                  {c.k}
+                </span>
+                <span class="text-sm font-medium text-ink">{c.v}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-[760px] mx-auto pt-24 px-6">
+    <div class="reveal border-l-4 border-accent-500 bg-white border-y border-r border-[#ecebe7] rounded-r-[14px] px-7 py-6">
+      <p class="text-[17px] leading-[1.65] text-brand-800">
+        No booking creates itself. Everything the AI detects goes through
+        <strong class="text-brand-900 font-semibold">your review</strong> first — you decide
+        what gets confirmed and what gets corrected before anything is saved.
+      </p>
+    </div>
+  </section>
+
+  <FinalCta lang={lang} />
+</BaseLayout>

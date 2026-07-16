@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FinalCta from '../components/FinalCta.astro';
+
+const lang = 'es' as const;
+const title = 'Cómo funciona — RumboDesk · De un mensaje suelto a una reserva ordenada';
+const description = 'Reenvías el email, la nota de WhatsApp o el PDF. La IA lo estructura. Tú revisas y confirmas. Así se convierte cualquier mensaje en una reserva ordenada, sin teclear nada a mano.';
+
+const pasos = [
+  {
+    n: '1',
+    title: 'Envías la información tal cual te llega',
+    body: 'Reenvía el correo de confirmación, pega la nota de WhatsApp o sube el itinerario en PDF, Word o Excel. Como te haya llegado — sin formularios que armar.',
+  },
+  {
+    n: '2',
+    title: 'La IA la lee y ordena en segundos',
+    body: 'Extrae fechas, hotel, vuelo, proveedor, pasajeros y costos automáticamente, sin importar el formato o el idioma en el que haya llegado.',
+  },
+  {
+    n: '3',
+    title: 'Tú revisas antes de que se guarde algo',
+    body: 'Ves exactamente qué se detectó y corriges lo que haga falta. La IA nunca escribe directo a tus reservas: nada se materializa sin que tú lo apruebes.',
+    checkpoint: true,
+  },
+  {
+    n: '4',
+    title: 'Confirmas con un clic',
+    body: 'Se crea la reserva real: folio, cliente, proveedor y pasajeros, todo ligado y ordenado, lista para operar.',
+  },
+  {
+    n: '5',
+    title: 'Queda rastreable para siempre',
+    body: 'Cobranza, reportes e historial de cambios, todo en un solo lugar, sin haber tecleado una sola celda a mano.',
+  },
+];
+
+const campos = [
+  { k: 'Cliente', v: 'Mariana Hernández' },
+  { k: 'Destino', v: 'Cancún, México' },
+  { k: 'Fechas', v: '14–21 sept 2026' },
+  { k: 'Hotel', v: 'Gran Fiesta Americana Coral Beach · Doble' },
+  { k: 'Pasajeros', v: 'Mariana Hernández, Roberto Ibarra' },
+  { k: 'Vuelo', v: 'AM442 · MEX→CUN · 08:15' },
+  { k: 'Costo', v: '$38,400 MXN' },
+];
+---
+
+<BaseLayout lang={lang} pageKey="howItWorks" title={title} description={description}>
+  <section class="max-w-[900px] mx-auto pt-20 px-6 text-center">
+    <h1 class="reveal text-4xl sm:text-5xl font-bold text-brand-700 leading-[1.1]">
+      Tú reenvías. RumboDesk ordena.
+    </h1>
+    <p class="reveal text-lg text-[#42485a] mt-5 max-w-[560px] mx-auto">
+      Sin plantillas que llenar ni datos que teclear a mano. Pega o reenvía la información tal
+      como te llega — nosotros la convertimos en una reserva lista para operar.
+    </p>
+  </section>
+
+  <section class="max-w-[820px] mx-auto pt-20 px-6">
+    <div class="space-y-5">
+      {
+        pasos.map((p) => (
+          <div
+            class:list={[
+              'reveal flex gap-5 rounded-[18px] px-6 py-6 border',
+              p.checkpoint
+                ? 'bg-accent-50 border-accent-200'
+                : 'bg-white border-[#ecebe7]',
+            ]}
+          >
+            <span
+              class:list={[
+                'shrink-0 w-11 h-11 rounded-[11px] text-white flex items-center justify-center font-display font-bold text-[18px]',
+                p.checkpoint ? 'bg-accent-500' : 'bg-brand-700',
+              ]}
+            >
+              {p.n}
+            </span>
+            <div>
+              {p.checkpoint && (
+                <p class="text-[12px] font-semibold text-accent-600 tracking-[0.06em] uppercase mb-1">
+                  Punto de control
+                </p>
+              )}
+              <h3 class="text-xl font-bold text-brand-700">{p.title}</h3>
+              <p class="text-[15px] leading-[1.6] text-[#42485a] mt-1.5">{p.body}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="max-w-[1180px] mx-auto pt-24 px-6">
+    <div class="reveal text-center max-w-[680px] mx-auto mb-12">
+      <h2 class="text-[32px] sm:text-[40px] font-bold text-brand-700">Un ejemplo real</h2>
+      <p class="text-[19px] text-[#42485a] mt-3.5">De un mensaje suelto a datos listos para operar.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 items-center">
+      <div class="reveal bg-white border border-[#ecebe7] rounded-[18px] px-6 py-6">
+        <p class="text-[12px] font-semibold text-[#6b7280] tracking-[0.05em] uppercase mb-3">
+          Nota reenviada por WhatsApp
+        </p>
+        <p class="text-[15px] leading-[1.65] text-ink">
+          Buenas! te paso los datos para la reserva de la familia Hernández 🙌
+          <br /><br />
+          Viajan del 14 al 21 de septiembre a Cancún. Se hospedan en el Grand Fiesta Americana
+          Coral Beach, habitación doble. Son 2: Mariana Hernández y Roberto Ibarra.
+          <br /><br />
+          El hotel cuesta 38,400 pesos. Vuelo Aeroméxico AM442, sale 14 sept 08:15 de CDMX.
+        </p>
+      </div>
+
+      <div class="reveal hidden md:flex items-center justify-center text-accent-500" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 12h16M14 6l6 6-6 6"></path>
+        </svg>
+      </div>
+
+      <div class="reveal rounded-[18px] bg-white shadow-[0_20px_48px_-20px_rgba(14,31,58,0.28),0_0_0_1px_rgba(14,31,58,0.05)] overflow-hidden">
+        <div class="h-9 flex items-center justify-between px-3.5 bg-brand-700">
+          <span class="text-white text-[11px] font-bold tracking-[0.05em]">RUMBODESK</span>
+          <span class="text-accent-200 text-[11px] font-semibold">RB-2026-0812</span>
+        </div>
+        <div class="px-5 py-2">
+          {
+            campos.map((c) => (
+              <div class="flex items-start gap-3 py-3 border-t border-[#f1f1ee] first:border-t-0">
+                <span class="w-24 shrink-0 text-[11px] font-bold text-accent-600 tracking-[0.04em] uppercase pt-0.5">
+                  {c.k}
+                </span>
+                <span class="text-sm font-medium text-ink">{c.v}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-[760px] mx-auto pt-24 px-6">
+    <div class="reveal border-l-4 border-accent-500 bg-white border-y border-r border-[#ecebe7] rounded-r-[14px] px-7 py-6">
+      <p class="text-[17px] leading-[1.65] text-brand-800">
+        Ninguna reserva se crea sola. Todo lo que la IA detecta pasa primero por
+        <strong class="text-brand-900 font-semibold">tu revisión</strong> — tú decides qué se
+        confirma y qué se corrige antes de que quede guardado.
+      </p>
+    </div>
+  </section>
+
+  <FinalCta lang={lang} />
+</BaseLayout>

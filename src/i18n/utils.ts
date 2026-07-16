@@ -10,6 +10,7 @@ export function getLangFromUrl(url: URL): Lang {
 export const alternatePaths: Record<string, { es: string; en: string }> = {
   home:     { es: '/',                en: '/en' },
   product:  { es: '/producto',        en: '/en/product' },
+  howItWorks: { es: '/como-funciona', en: '/en/how-it-works' },
   pricing:  { es: '/precios',         en: '/en/pricing' },
   agencies: { es: '/para-agencias',   en: '/en/for-agencies' },
   operators:{ es: '/para-operadores', en: '/en/for-operators' },
