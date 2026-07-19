@@ -5,10 +5,14 @@ const title = 'Pricing — RumboDesk · Plans from $499 MXN/month';
 const description = 'Two simple plans for operators and agencies in LATAM. Essential and Professional. Pricing in Mexican pesos.';
 
 const plans = [
-  { name: 'Essential', price: '$499', period: '/mo', annualPrice: '$4,990', annualEquivalent: '$416', audience: 'Independent operators and agents getting started',
+  { name: 'Essential', price: '$499', period: '/mo', annualPrice: '$4,990', annualEquivalent: '$416',
+    priceUsd: '$29', annualPriceUsd: '$290', annualEquivalentUsd: '$24',
+    audience: 'Independent operators and agents getting started',
     bullets: ['Up to 50 bookings/month','Email ingest + paste','2 users','Unlimited supplier catalog','Email support'],
     cta: 'Start Essential', highlight: false },
-  { name: 'Professional', price: '$999', period: '/mo', annualPrice: '$9,990', annualEquivalent: '$833', audience: 'Small agencies and growing operators',
+  { name: 'Professional', price: '$999', period: '/mo', annualPrice: '$9,990', annualEquivalent: '$833',
+    priceUsd: '$59', annualPriceUsd: '$590', annualEquivalentUsd: '$49',
+    audience: 'Small agencies and growing operators',
     bullets: ['Unlimited bookings','Up to 15 users','PDF & Word with OCR','Visa & passport tracking','Financial reports (MoM, commissions)','Priority support'],
     cta: 'Start Professional', highlight: true },
 ];
@@ -18,7 +22,7 @@ const plans = [
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h1 class="text-4xl sm:text-5xl font-extrabold text-brand-900">Simple pricing. No surprises.</h1>
       <p class="mt-4 text-lg text-gray-700">All plans include AI ingest, human review, multi-language and original-file backup.</p>
-      <p class="mt-2 text-sm text-gray-500">Prices in MXN. Tax not included. 14-day trial, no card.</p>
+      <p class="mt-2 text-sm text-gray-500">Prices in MXN or USD, depending on your market. Tax not included. 14-day trial, no card.</p>
       <div class="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-600">
         <span class="flex items-center gap-1.5"><span class="text-accent-500">✓</span>14 days free</span>
         <span class="flex items-center gap-1.5"><span class="text-accent-500">✓</span>No long-term contracts</span>
@@ -32,6 +36,11 @@ const plans = [
           <span class="text-[11px] font-bold text-white bg-accent-500 px-2 py-0.5 rounded-full whitespace-nowrap">2 months free</span>
         </button>
       </div>
+
+      <div class="mt-3 inline-flex items-center gap-1 p-1 rounded-full bg-white border border-gray-200" id="currency-toggle">
+        <button type="button" class="currency-toggle-btn px-4 py-2 rounded-full text-sm font-semibold transition-colors text-brand-600" data-currency="mxn">MXN</button>
+        <button type="button" class="currency-toggle-btn px-4 py-2 rounded-full text-sm font-semibold transition-colors bg-accent-500 text-white" data-currency="usd">USD</button>
+      </div>
     </div>
   </section>
   <section class="pb-20">
@@ -42,17 +51,34 @@ const plans = [
           <h3 class="text-2xl font-bold text-brand-900">{p.name}</h3>
           <p class="mt-1 text-sm text-gray-600">{p.audience}</p>
           <div class="mt-6" data-price-monthly>
-            <div class="flex items-baseline gap-1">
-              <span class="text-4xl font-extrabold text-brand-900">{p.price}</span>
-              <span class="text-gray-600">{p.period} MXN</span>
+            <div class="hidden" data-currency-block="mxn">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-extrabold text-brand-900">{p.price}</span>
+                <span class="text-gray-600">{p.period} MXN</span>
+              </div>
+            </div>
+            <div data-currency-block="usd">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-extrabold text-brand-900">{p.priceUsd}</span>
+                <span class="text-gray-600">{p.period} USD</span>
+              </div>
             </div>
           </div>
           <div class="mt-6 hidden" data-price-annual>
-            <div class="flex items-baseline gap-1">
-              <span class="text-4xl font-extrabold text-brand-900">{p.annualPrice}</span>
-              <span class="text-gray-600">/yr MXN</span>
+            <div class="hidden" data-currency-block="mxn">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-extrabold text-brand-900">{p.annualPrice}</span>
+                <span class="text-gray-600">/yr MXN</span>
+              </div>
+              <p class="mt-1 text-sm text-gray-500">≈ {p.annualEquivalent}/mo · 2 months free</p>
             </div>
-            <p class="mt-1 text-sm text-gray-500">≈ {p.annualEquivalent}/mo · 2 months free</p>
+            <div data-currency-block="usd">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-extrabold text-brand-900">{p.annualPriceUsd}</span>
+                <span class="text-gray-600">/yr USD</span>
+              </div>
+              <p class="mt-1 text-sm text-gray-500">≈ {p.annualEquivalentUsd}/mo · 2 months free</p>
+            </div>
           </div>
           <ul class="mt-6 space-y-3 text-sm text-gray-700">
             {p.bullets.map(b => (<li class="flex gap-2"><span class="text-accent-500">✓</span>{b}</li>))}
@@ -104,4 +130,23 @@ const plans = [
     btn.addEventListener('click', () => setBilling((btn as HTMLElement).dataset.billing || 'monthly'));
   });
   setBilling('monthly');
+
+  // Independent of the billing toggle -- lives inside BOTH billing blocks
+  // (monthly and annual) at once, so it's just show/hide by
+  // data-currency-block regardless of which billing block is active.
+  function setCurrency(cur: string) {
+    document.querySelectorAll('[data-currency-block]').forEach((el) => {
+      el.classList.toggle('hidden', (el as HTMLElement).dataset.currencyBlock !== cur);
+    });
+    document.querySelectorAll('.currency-toggle-btn').forEach((btn) => {
+      const active = (btn as HTMLElement).dataset.currency === cur;
+      btn.classList.toggle('bg-accent-500', active);
+      btn.classList.toggle('text-white', active);
+      btn.classList.toggle('text-brand-600', !active);
+    });
+  }
+  document.querySelectorAll('.currency-toggle-btn').forEach((btn) => {
+    btn.addEventListener('click', () => setCurrency((btn as HTMLElement).dataset.currency || 'usd'));
+  });
+  setCurrency('usd');
 </script>

@@ -11,6 +11,9 @@ const plans = [
     period: '/mes',
     annualPrice: '$4,990',
     annualEquivalent: '$416',
+    priceUsd: '$29',
+    annualPriceUsd: '$290',
+    annualEquivalentUsd: '$24',
     audience: 'Operadores y agentes independientes que arrancan',
     bullets: [
       'Hasta 50 reservas al mes',
@@ -28,6 +31,9 @@ const plans = [
     period: '/mes',
     annualPrice: '$9,990',
     annualEquivalent: '$833',
+    priceUsd: '$59',
+    annualPriceUsd: '$590',
+    annualEquivalentUsd: '$49',
     audience: 'Agencias pequeñas y operadores en crecimiento',
     bullets: [
       'Reservas ilimitadas',
@@ -47,7 +53,7 @@ const plans = [
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h1 class="text-4xl sm:text-5xl font-extrabold text-brand-900">Precios simples, sin sorpresas.</h1>
       <p class="mt-4 text-lg text-gray-700">Todos los planes incluyen ingest IA, revisión humana, multi-idioma y respaldo de archivos originales.</p>
-      <p class="mt-2 text-sm text-gray-500">Precios en MXN. Impuestos no incluidos. 14 días de prueba sin tarjeta.</p>
+      <p class="mt-2 text-sm text-gray-500">Precios en MXN o USD, según tu mercado. Impuestos no incluidos. 14 días de prueba sin tarjeta.</p>
       <div class="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-600">
         <span class="flex items-center gap-1.5"><span class="text-accent-500">✓</span>14 días gratis</span>
         <span class="flex items-center gap-1.5"><span class="text-accent-500">✓</span>Sin plazos forzosos</span>
@@ -61,6 +67,11 @@ const plans = [
           <span class="text-[11px] font-bold text-white bg-accent-500 px-2 py-0.5 rounded-full whitespace-nowrap">2 meses gratis</span>
         </button>
       </div>
+
+      <div class="mt-3 inline-flex items-center gap-1 p-1 rounded-full bg-white border border-gray-200" id="currency-toggle">
+        <button type="button" class="currency-toggle-btn px-4 py-2 rounded-full text-sm font-semibold transition-colors" data-currency="mxn">MXN</button>
+        <button type="button" class="currency-toggle-btn px-4 py-2 rounded-full text-sm font-semibold transition-colors" data-currency="usd">USD</button>
+      </div>
     </div>
   </section>
 
@@ -72,17 +83,38 @@ const plans = [
           <h3 class="text-2xl font-bold text-brand-900">{p.name}</h3>
           <p class="mt-1 text-sm text-gray-600">{p.audience}</p>
           <div class="mt-6" data-price-monthly>
-            <div class="flex items-baseline gap-1">
-              <span class="text-4xl font-extrabold text-brand-900">{p.price}</span>
-              <span class="text-gray-600">{p.period} MXN</span>
+            <div data-currency-block="mxn">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-extrabold text-brand-900">{p.price}</span>
+                <span class="text-gray-600">{p.period} MXN</span>
+              </div>
+              <p class="mt-1 text-sm text-gray-500">≈ {p.priceUsd} USD</p>
+            </div>
+            <div class="hidden" data-currency-block="usd">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-extrabold text-brand-900">{p.priceUsd}</span>
+                <span class="text-gray-600">{p.period} USD</span>
+              </div>
+              <p class="mt-1 text-sm text-gray-500">≈ {p.price} MXN</p>
             </div>
           </div>
           <div class="mt-6 hidden" data-price-annual>
-            <div class="flex items-baseline gap-1">
-              <span class="text-4xl font-extrabold text-brand-900">{p.annualPrice}</span>
-              <span class="text-gray-600">/año MXN</span>
+            <div data-currency-block="mxn">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-extrabold text-brand-900">{p.annualPrice}</span>
+                <span class="text-gray-600">/año MXN</span>
+              </div>
+              <p class="mt-1 text-sm text-gray-500">≈ {p.annualEquivalent}/mes · 2 meses gratis</p>
+              <p class="text-sm text-gray-500">≈ {p.annualPriceUsd} USD/año</p>
             </div>
-            <p class="mt-1 text-sm text-gray-500">≈ {p.annualEquivalent}/mes · 2 meses gratis</p>
+            <div class="hidden" data-currency-block="usd">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-extrabold text-brand-900">{p.annualPriceUsd}</span>
+                <span class="text-gray-600">/año USD</span>
+              </div>
+              <p class="mt-1 text-sm text-gray-500">≈ {p.annualEquivalentUsd}/mes · 2 meses gratis</p>
+              <p class="text-sm text-gray-500">≈ {p.annualPrice} MXN/año</p>
+            </div>
           </div>
           <ul class="mt-6 space-y-3 text-sm text-gray-700">
             {p.bullets.map(b => (
@@ -137,4 +169,23 @@ const plans = [
     btn.addEventListener('click', () => setBilling((btn as HTMLElement).dataset.billing || 'monthly'));
   });
   setBilling('monthly');
+
+  // Independiente del billing toggle -- vive dentro de AMBOS bloques
+  // (mensual y anual) a la vez, así que basta con mostrar/ocultar por
+  // data-currency-block sin importar cuál bloque de billing esté activo.
+  function setCurrency(cur: string) {
+    document.querySelectorAll('[data-currency-block]').forEach((el) => {
+      el.classList.toggle('hidden', (el as HTMLElement).dataset.currencyBlock !== cur);
+    });
+    document.querySelectorAll('.currency-toggle-btn').forEach((btn) => {
+      const active = (btn as HTMLElement).dataset.currency === cur;
+      btn.classList.toggle('bg-accent-500', active);
+      btn.classList.toggle('text-white', active);
+      btn.classList.toggle('text-brand-600', !active);
+    });
+  }
+  document.querySelectorAll('.currency-toggle-btn').forEach((btn) => {
+    btn.addEventListener('click', () => setCurrency((btn as HTMLElement).dataset.currency || 'mxn'));
+  });
+  setCurrency('mxn');
 </script>
