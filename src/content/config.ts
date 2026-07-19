@@ -11,12 +11,15 @@ const blog = defineCollection({
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     author: z.string().default('Equipo RumboDesk'),
-    category: z.enum(['Operación', 'IA', 'Guías', 'Producto']),
+    category: z.enum(['Operación', 'IA', 'Guías', 'Producto', 'Operations', 'AI', 'Guides', 'Product']),
     tags: z.array(z.string()).default([]),
     heroImage: z.string().optional(),
     heroImageAlt: z.string().optional(),
     canonicalURL: z.string().url().optional(),
     draft: z.boolean().default(false),
+    lang: z.enum(['es', 'en']).default('es'),
+    // id (filename sin extensión) del post equivalente en el otro idioma, si existe.
+    translationSlug: z.string().optional(),
     faq: z
       .array(
         z.object({

@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import type { CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -12,10 +12,22 @@ interface Props {
 
 const { post } = Astro.props;
 const d = post.data;
+const lang = d.lang;
+const isEn = lang === 'en';
 
 const site = 'https://rumbodesk.com';
-const canonical = d.canonicalURL ?? `${site}/blog/${post.id}`;
+const blogBase = isEn ? `${site}/en/blog` : `${site}/blog`;
+const canonical = d.canonicalURL ?? `${blogBase}/${post.id}`;
 const pageTitle = d.seoTitle ?? d.title;
+
+// Alterna hacia la traducción (si existe) para hreflang y el switcher del Header.
+const translation = d.translationSlug
+  ? (await getCollection('blog', ({ id, data }) => id === d.translationSlug && data.lang !== lang))[0]
+  : undefined;
+const translationHref = translation
+  ? (isEn ? `${site}/blog/${translation.id}` : `${site}/en/blog/${translation.id}`)
+  : undefined;
+const esHref = isEn ? translationHref : canonical;
 
 // La portada sólo se muestra si el archivo existe en /public; si aún no se
 // sube, el hero no se renderiza y la imagen social cae a og-default.png.
@@ -28,16 +40,21 @@ const ogImage = heroPath.startsWith('http') ? heroPath : site + heroPath;
 
 const pubISO = d.pubDate.toISOString();
 const modISO = (d.updatedDate ?? d.pubDate).toISOString();
-const displayDate = d.pubDate.toLocaleDateString('es-MX', {
+const dateLocale = isEn ? 'en-US' : 'es-MX';
+const displayDate = d.pubDate.toLocaleDateString(dateLocale, {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
 });
 const displayUpdated = d.updatedDate
-  ? d.updatedDate.toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })
+  ? d.updatedDate.toLocaleDateString(dateLocale, { year: 'numeric', month: 'long', day: 'numeric' })
   : null;
 
-const blogUrl = `${site}/blog`;
+const blogUrl = blogBase;
+const homeUrl = isEn ? `${site}/en` : `${site}/`;
+const i = isEn
+  ? { htmlLang: 'en-US', home: 'Home', breadcrumbNav: 'Breadcrumb', updated: 'Updated on', ogLocale: 'en_US' }
+  : { htmlLang: 'es-MX', home: 'Inicio', breadcrumbNav: 'Ruta de navegación', updated: 'Actualizado el', ogLocale: 'es_MX' };
 
 // --- JSON-LD ---------------------------------------------------------------
 const articleSchema = {
@@ -45,7 +62,7 @@ const articleSchema = {
   '@type': 'Article',
   headline: d.title,
   description: d.description,
-  inLanguage: 'es-MX',
+  inLanguage: i.htmlLang,
   datePublished: pubISO,
   dateModified: modISO,
   image: ogImage,
@@ -78,7 +95,7 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${site}/` },
+    { '@type': 'ListItem', position: 1, name: i.home, item: homeUrl },
     { '@type': 'ListItem', position: 2, name: 'Blog', item: blogUrl },
     { '@type': 'ListItem', position: 3, name: d.title, item: canonical },
   ],
@@ -86,7 +103,7 @@ const breadcrumbSchema = {
 ---
 
 <!doctype html>
-<html lang="es-MX">
+<html lang={i.htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -102,16 +119,17 @@ const breadcrumbSchema = {
     <meta name="description" content={d.description} />
     <link rel="canonical" href={canonical} />
 
-    {/* Los posts sólo existen en ES; el hreflang se autorreferencia (no hay traducción EN). */}
-    <link rel="alternate" hreflang="es" href={canonical} />
-    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <link rel="alternate" hreflang={isEn ? 'en' : 'es'} href={canonical} />
+    {translationHref && <link rel="alternate" hreflang={isEn ? 'es' : 'en'} href={translationHref} />}
+    <link rel="alternate" hreflang="x-default" href={esHref ?? canonical} />
 
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="RumboDesk" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={d.description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content="es_MX" />
+    <meta property="og:locale" content={i.ogLocale} />
+    {translationHref && <meta property="og:locale:alternate" content={isEn ? 'es_MX' : 'en_US'} />}
     <meta property="og:image" content={ogImage} />
     <meta property="article:published_time" content={pubISO} />
     <meta property="article:modified_time" content={modISO} />
@@ -134,13 +152,13 @@ const breadcrumbSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   </head>
   <body class="min-h-screen flex flex-col">
-    <Header lang="es" pageKey="blog" />
+    <Header lang={lang} pageKey="blog" altHref={translationHref} />
     <main class="flex-1">
       <article class="max-w-[720px] mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-        <nav aria-label="Ruta de navegación" class="text-sm text-brand-400 flex flex-wrap items-center gap-1.5">
-          <a href="/" class="hover:text-brand-600 transition-colors">Inicio</a>
+        <nav aria-label={i.breadcrumbNav} class="text-sm text-brand-400 flex flex-wrap items-center gap-1.5">
+          <a href={homeUrl} class="hover:text-brand-600 transition-colors">{i.home}</a>
           <span aria-hidden="true">›</span>
-          <a href="/blog" class="hover:text-brand-600 transition-colors">Blog</a>
+          <a href={blogUrl.replace(site, '')} class="hover:text-brand-600 transition-colors">Blog</a>
           <span aria-hidden="true">›</span>
           <span class="text-brand-600 font-medium">{d.title}</span>
         </nav>
@@ -159,7 +177,7 @@ const breadcrumbSchema = {
             {displayUpdated && (
               <>
                 <span aria-hidden="true">·</span>
-                <span>Actualizado el {displayUpdated}</span>
+                <span>{i.updated} {displayUpdated}</span>
               </>
             )}
           </div>
@@ -181,6 +199,6 @@ const breadcrumbSchema = {
         </div>
       </article>
     </main>
-    <Footer lang="es" />
+    <Footer lang={lang} />
   </body>
 </html>
